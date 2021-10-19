@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/customerListFragment">
+
+    <fragment
+        android:id="@+id/customerListFragment"
+        android:name="co.id.cpn.bdmgafi.ui.customer.CustomerListFragment"
+        android:label="@string/list_customer"
+        tools:layout="@layout/fragment_customer_list" >
+        <action
+            android:id="@+id/action_listFragment_to_editorFragment"
+            app:destination="@id/customerDetailFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/customerDetailFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/customerDetailFragment"
+        android:name="co.id.cpn.bdmgafi.ui.customer.CustomerDetailFragment"
+        android:label="@string/customer_detail"
+        tools:layout="@layout/fragment_customer_detail" >
+        <argument
+            android:name="item_sid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_customerDetailFragment_to_customerListFragment"
+            app:destination="@id/customerListFragment" 
+            app:popUpTo="@id/customerListFragment" />
+        <action
+            android:id="@+id/action_customerDetailFragment_to_customerVisitFragment"
+            app:destination="@id/customerVisitFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerVisitFragment"
+        android:name="co.id.cpn.bdmgafi.ui.customer.CustomerVisitFragment"
+        android:label="@string/customer_visit"
+        tools:layout="@layout/fragment_customer_visit" >
+        <argument
+            android:name="item_sid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_customerVisitFragment_to_customerDetailFragment"
+            app:destination="@id/customerDetailFragment" />
+        <action
+            android:id="@+id/action_customerVisitFragment_to_customerInspectionListFragment"
+            app:destination="@id/customerInspectionListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerInspectionListFragment"
+        android:name="co.id.cpn.bdmgafi.ui.customer.CustomerListInspectionFragment"
+        android:label="@string/customer_inspection"
+        tools:layout="@layout/fragment_customer_inspection_list" >
+        <argument
+            android:name="item_sid"
+            app:argType="string" />
+    </fragment>
+</navigation>

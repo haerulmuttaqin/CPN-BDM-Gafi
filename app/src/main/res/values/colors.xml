@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_A200">#FF40C4FF</color>
+    <color name="blue_200">#2194E6</color>
+    <color name="blue_500">#0971ba</color>
+    <color name="blue_700">#045A97</color>
+    <color name="blue_900">#004C88</color>
+    <color name="black">#FF000000</color>
+    <color name="black_100">#232323</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_100">#F9F9F9</color>
+    <color name="white_200">#E5E6EB</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="green">#049E44</color>
+    <color name="green_200">#00D358</color>
+    <color name="yellow">#FFC800</color>
+    <color name="yellow_200">#FFAB00</color>
+    <color name="yellow_500">#D38E03</color>
+    <color name="orange">#FF6D00</color>
+    <color name="gray_050">#EDEDED</color>
+    <color name="gray_080">#D1D1D1</color>
+    <color name="gray_100">#B1B1B1</color>
+    <color name="gray_200">#707070</color>
+    <color name="gray_300">#474747</color>
+    <color name="gray_400">#272727</color>
+    <color name="red">#D50000</color>
+    <color name="bg_item_list">#FFFFFF</color>
+</resources>

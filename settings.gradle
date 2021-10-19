@@ -1,0 +1,5 @@
+rootProject.name = "CPN-BDM-Gafi"
+include ':app'
+include ':entity'
+include ':data'
+include ':domain'

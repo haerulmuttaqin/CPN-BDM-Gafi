@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">CPN-BDM-Gafi</string>
+    <string name="login">Login</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="app_version">App Version</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="server_key">Server Key</string>
+    <string name="title_activity_splash">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="dashboard_performance_label">Dashboard Performance</string>
+    <string name="turn_on_flashlight">FLASH ON</string>
+    <string name="turn_off_flashlight">FLASH OFF</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_home">Home</string>
+    <string name="fragment_profile">Profile</string>
+    <string name="something_wrong">Something went wrong.</string>
+    <string name="distribution">Distribution</string>
+    <string name="region">Region</string>
+    <string name="list_customer">List Customer</string>
+    <string name="customer_detail">Customer Detail</string>
+    <string name="customer_visit">Customer Visit</string>
+    <string name="customer_inspection">Customer Inspection</string>
+</resources>

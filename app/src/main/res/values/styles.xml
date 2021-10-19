@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.CPNBDMGafi.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.CPNBDMGafi.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.CPNBDMGafi.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Widget.Theme.CPNBDMGafi.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.CPNBDMGafi.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+    <style name="Theme.CPNBDMGafi.SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:statusBarColor">@color/blue_500</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <style name="ProgressDialogStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="dialogCornerRadius">10dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+    <style name="ProgressDialogStyle2" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <item name="colorAccent">@color/yellow_200</item>
+        <item name="colorControlNormal">@color/gray_400</item>
+        <item name="colorControlActivated">@color/yellow_200</item>
+    </style>
+
+    <style name="collapsedTitleStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/medium</item>
+    </style>
+
+    <style name="expandedTitleStyle" parent="@style/TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/medium</item>
+    </style>
+
+    <style name="Theme.CPNBDMGafi.Toolbar">
+        <item name="android:textColorSecondary">@android:color/primary_text_dark</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="dropDownStyle">
+        <item name="android:minHeight">55dp</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawableEnd">@drawable/ic_sort_down</item>
+    </style>
+
+    <style name="SpinnerStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxBackgroundColor">@color/white</item>
+
+        <item name="boxStrokeColor">@color/blue_500</item>
+        <item name="boxStrokeErrorColor">@color/red</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+
+        <item name="errorTextColor">@color/red</item>
+        <item name="errorEnabled">true</item>
+
+        <item name="hintEnabled">true</item>
+        <item name="hintTextColor">@color/blue_500</item>
+        <item name="android:textColorHint">@color/gray_300</item>
+
+        <item name="endIconMode">clear_text</item>
+
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.6dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
+    <style name="Clickable">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Theme.NavSample.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.NavSample.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+</resources>

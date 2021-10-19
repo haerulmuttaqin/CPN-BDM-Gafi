@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/Clickable">
+    
+    <RelativeLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <RelativeLayout
+            android:id="@+id/progressLayout"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+            
+            <ImageView
+                android:id="@+id/icon"
+                android:background="@drawable/bg_secondary"
+                android:src="@drawable/ic_home_work"
+                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                app:tint="@color/gray_100" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:visibility="invisible"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="100"
+                android:progress="50"
+                android:secondaryProgress="100"
+                android:progressDrawable="@drawable/circular_progress"/>
+            
+        </RelativeLayout>
+        
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/progressLayout"
+            android:layout_toStartOf="@id/progressBarInit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textCustomer"
+                android:text="Data Customer"
+                android:textColor="@color/gray_400"
+                android:fontFamily="@font/medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="-/-"
+                android:layout_below="@id/textCustomer"
+                android:layout_toEndOf="@id/progressLayout"
+                android:id="@+id/textProgressSize"
+                android:typeface="sans"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"/>
+            
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/download"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_download"
+            android:layout_alignParentEnd="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/blue_200" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:visibility="invisible"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/progressBarDownloading"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="download.json"
+            app:lottie_loop="true"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:visibility="invisible"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/progressBarInit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loading_blue.json"
+            app:lottie_loop="true"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        style="@style/Divider"
+        android:layout_below="@id/content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+</LinearLayout>

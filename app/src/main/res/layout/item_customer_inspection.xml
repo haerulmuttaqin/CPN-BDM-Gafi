@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_toEndOf="@id/icon_asset"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/customer_asset_id_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bold"
+            android:textColor="@color/gray_400"
+            tools:text="Asset ID"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
+
+        <TextView
+            android:id="@+id/customer_asset_type_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:textSize="12sp"
+            android:textColor="@color/gray_200"
+            tools:text="Asset Type"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
+        
+    </LinearLayout>
+    
+    <ImageView
+        android:id="@+id/icon_asset"
+        android:src="@drawable/ic_asset"
+        android:layout_marginEnd="19sp"
+        android:layout_marginStart="19sp"
+        android:layout_marginTop="17dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="2dp"
+        app:tint="@color/blue_200" />
+
+    <View
+        android:id="@+id/divider"
+        style="@style/Divider"
+        android:layout_below="@id/content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="14dp" />
+    
+</RelativeLayout>

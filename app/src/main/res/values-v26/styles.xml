@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="dropDownStyle">
+        <item name="android:minHeight">55dp</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:importantForAutofill">no</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawableEnd">@drawable/ic_sort_down</item>
+    </style>
+</resources>

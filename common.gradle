@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"https://api-bdm-gafi.azurewebsites.net/api/\"")
+            buildConfigField("String", "BASE_URL_NEWS", "\"https://www.joyday.com/id/\"")
+        } 
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://crm.sadix.net/bdmapi/api/v1/\"")
+            buildConfigField("String", "BASE_URL_NEWS", "\"https://www.joyday.com/id/\"")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.main.kotlin
+    implementation rootProject.ext.main.coreKtx
+    implementation rootProject.ext.main.appCompat
+    implementation rootProject.ext.main.googleMaterial
+    implementation rootProject.ext.main.constraintLayout
+
+    implementation rootProject.ext.misc.koinCore
+    implementation rootProject.ext.misc.koinAndroid
+    implementation rootProject.ext.misc.koinAndroidScope
+    implementation rootProject.ext.misc.koinViewModel
+    implementation rootProject.ext.misc.koinFragment
+    
+    implementation rootProject.ext.misc.coroutinesCore
+    implementation rootProject.ext.misc.coroutinesAndroid
+    implementation rootProject.ext.misc.okhttp
+    implementation rootProject.ext.misc.loggingInterceptor
+    implementation rootProject.ext.misc.retrofit
+    implementation rootProject.ext.misc.converterMoshi
+    implementation rootProject.ext.misc.moshi
+    implementation rootProject.ext.misc.moshiKotlin
+    implementation rootProject.ext.misc.gson
+    implementation rootProject.ext.misc.sqlcipher
+    implementation rootProject.ext.misc.coil
+    implementation rootProject.ext.misc.prDownloader
+    
+    implementation rootProject.ext.architectureComponents.sqlite
+    implementation rootProject.ext.architectureComponents.roomKtx
+    
+    annotationProcessor  rootProject.ext.architectureComponents.roomCompiler
+    kapt rootProject.ext.architectureComponents.roomCompiler
+
+    implementation rootProject.ext.misc.jsoup
+    implementation rootProject.ext.misc.retrofitHtmlConverter
+    
+    implementation rootProject.ext.architectureComponents.paging
+    implementation rootProject.ext.architectureComponents.livedataKtx
+    implementation rootProject.ext.architectureComponents.workManager
+
+    testImplementation rootProject.ext.testing.junit
+    androidTestImplementation rootProject.ext.testing.extJunit
+    androidTestImplementation rootProject.ext.testing.espressoCore
+}

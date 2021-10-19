@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_500"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_500"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/Theme.CPNBDMGafi.Toolbar"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/Theme.CPNBDMGafi.PopupOverlay"
+            app:titleTextColor="@color/white"
+            app:elevation="0dp">
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@id/appbar"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <RelativeLayout
+            android:fitsSystemWindows="true"
+            android:background="@drawable/rounded_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/handle_round"
+                    android:layout_width="40dp"
+                    android:layout_height="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_round" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_customer_distribution"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="55dp"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginTop="17dp"
+                    android:hint="@string/distribution">
+                    <co.id.cpn.bdmgafi.util_view.DistributionDropdown
+                        android:id="@+id/distribution_dropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/dropDownStyle" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/swipe"
+                    android:layout_below="@id/layout_customer_distribution"
+                    android:fitsSystemWindows="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                            <LinearLayout
+                                android:id="@+id/emptyView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:visibility="invisible"
+                                android:fillViewport="true"
+                                android:background="@drawable/rounded_dialog"
+                                android:clickable="false"
+                                android:focusable="false"
+                                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/textEmpty"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:padding="16dp"
+                                    android:text="Search Asset"
+                                    android:fontFamily="@font/medium"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </androidx.core.widget.NestedScrollView>
+                    
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                
+                <ImageView
+                    android:id="@+id/shadow"
+                    android:layout_below="@id/layout_customer_distribution"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:src="@drawable/bg_shadow_up_down_white_roundless"
+                    app:layout_anchorGravity="top|center" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
