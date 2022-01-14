@@ -55,7 +55,7 @@ internal class DownloadOperations private constructor(val continuation: WorkCont
                         R.layout.item_download_sqlite,
                         downloadContainer,
                         false
-                    ) as LinearLayout
+                    )  as LinearLayout
                 val textRegion = downloadItem.findViewById<TextView>(R.id.textCustomer)
                 val textProgressPercent =
                     downloadItem.findViewById<TextView>(R.id.textProgressPercent)
