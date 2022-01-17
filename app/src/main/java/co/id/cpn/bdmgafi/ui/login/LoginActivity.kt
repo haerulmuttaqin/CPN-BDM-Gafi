@@ -16,15 +16,27 @@ import co.id.cpn.entity.login.LoginRequest
 import co.id.cpn.entity.login.LoginResponse
 import co.id.cpn.entity.util.Constants
 import co.id.cpn.entity.util.Utils
+import co.id.cpn.entity.util.Utils.getDeviceID
 import com.google.gson.JsonObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.File
+import java.io.*
+import java.lang.NullPointerException
+import java.lang.StringBuilder
+import java.nio.charset.Charset
+import java.nio.file.NoSuchFileException
+import kotlin.jvm.internal.Intrinsics
+import kotlin.jvm.internal.Ref.ObjectRef
+import kotlin.text.Charsets.UTF_8
 
 class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModel()
     private lateinit var loginRequest: LoginRequest
+
+    private lateinit var deviceID: String
+    private lateinit var handSetID: String
+
     override fun initViewBinding() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,13 +46,13 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         createDir()
-        
+
         if (SharedPref(this@LoginActivity).loggedIn) {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
 
-        
+
         binding.textVersion.text = Utils.appVersion(this@LoginActivity)
 
         val serverKey = SharedPref(this@LoginActivity).userKey.keyS
@@ -107,7 +119,6 @@ class LoginActivity : BaseActivity() {
             is Resource.Success -> response.data.let {
 
                 for (dist in response.data.data.listDistribution) {
-                    Log.w("TAG", "woyyy: ${dist.distributionName}")
                     viewModel.storeDistribution(dist)
                 }
 
@@ -116,15 +127,6 @@ class LoginActivity : BaseActivity() {
                     loggedIn = true
                     userKey = loginRequest
                 }
-                
-                /*if () {
-                    
-                } else {
-                    AppUtils.errorDialog(
-                        this,
-                        "An error occurred",
-                    )
-                }*/
 
                 viewModel.getToken(response.data.data.authorization)
 
@@ -257,4 +259,131 @@ class LoginActivity : BaseActivity() {
             }
         }
     }
+
+
+    private fun readFileDeviceID(fileName: String) {
+        val myExternalFile = File(
+            Intrinsics.stringPlus(
+                Environment.getExternalStorageDirectory().toString(),
+                Constants.PATH
+            ), fileName
+        )
+        if (!myExternalFile.exists()) {
+            createFile(fileName, getDeviceID(this).toString())
+        }
+        try {
+            val fileInputStream = FileInputStream(myExternalFile)
+            val bufferedReader = BufferedReader(InputStreamReader(fileInputStream))
+            val stringBuilder = StringBuilder()
+            var text = ""
+            while ((bufferedReader.readLine().also { text = it }) != null) {
+                stringBuilder.append(text)
+            }
+            deviceID = stringBuilder.toString()
+            val activityLoginBinding = binding
+            if (activityLoginBinding != null) {
+                activityLoginBinding.textHandsetKey.text = Intrinsics.stringPlus(
+                    "Handset Key: ",
+                    deviceID
+                )
+                fileInputStream.close()
+                return
+            }
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
+    }
+
+//    private fun readFileHandSet(fileName: String) {
+//        val myExternalFile = File(
+//            Intrinsics.stringPlus(
+//                Environment.getExternalStorageDirectory().toString(),
+//                Constants.PATH
+//            ), fileName
+//        )
+//        if (myExternalFile.exists() && fileName != null) {
+//            if (fileName == null) {
+//                throw NullPointerException("null cannot be cast to non-null type kotlin.CharSequence")
+//            } else if (!Intrinsics.areEqual(
+//                    fileName as CharSequence?. trim ().toString() as Any,
+//                    "" as Any
+//                )
+//            ) {
+//                try {
+//                    val fileInputStream = FileInputStream(myExternalFile)
+//                    val bufferedReader =
+//                        BufferedReader(InputStreamReader(fileInputStream))
+//                    val stringBuilder = StringBuilder()
+//                    val text: ObjectRef<*> = ObjectRef<Any?>()
+//                    while (`LoginActivity$readFileHandSet$1`(
+//                            text,
+//                            bufferedReader
+//                        ).invoke() != null
+//                    ) {
+//                        stringBuilder.append(text.element as String)
+//                    }
+//                    this.handSetID = stringBuilder.toString()
+//                    Log.w(TAG, Intrinsics.stringPlus("handsetid: ", this.handSetID))
+//                    if (!Intrinsics.areEqual(this.handSetID as Any?, "" as Any)) {
+//                        binding.serverKeyLayout.visibility = View.VISIBLE
+//                        binding.serverKey.setText(this.handSetID)
+//                    }
+//                    fileInputStream.close()
+//                } catch (e: NoSuchFileException) {
+//                    e.printStackTrace()
+//                }
+//            }
+//        }
+//    }
+
+    private fun createFile(fileName: String, content: String?) {
+        try {
+            val fileOutPutStream = FileOutputStream(
+                File(
+                    Intrinsics.stringPlus(
+                        Environment.getExternalStorageDirectory().toString(),
+                        Constants.PATH
+                    ), fileName
+                )
+            )
+            val charset: Charset = UTF_8
+            if (content != null) {
+                val bytes = content.toByteArray(charset)
+                fileOutPutStream.write(bytes)
+                fileOutPutStream.close()
+                return
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun removeConfigFile() {
+        val file1 = File(
+            Intrinsics.stringPlus(
+                Environment.getExternalStorageDirectory().toString(),
+                Constants.PATH
+            ), ".data.1.0.device.txt"
+        )
+        val file2 = File(
+            Intrinsics.stringPlus(
+                Environment.getExternalStorageDirectory().toString(),
+                Constants.PATH
+            ), ".data.1.0.skey.txt"
+        )
+        if (file1.exists()) {
+            file1.delete()
+        }
+        if (file2.exists()) {
+            file2.delete()
+        }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        readFileDeviceID(".data.1.0.device.txt")
+//        readFileHandSet(".data.1.0.skey.txt")
+    }
+
 }

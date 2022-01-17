@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Environment
 import android.preference.PreferenceManager
 import android.provider.Settings
 import android.telephony.TelephonyManager
@@ -16,9 +17,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import net.sqlcipher.BuildConfig
+import java.io.File
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.jvm.internal.Intrinsics
 
 
 object Utils {
@@ -202,5 +205,93 @@ object Utils {
         val gson = Gson()
         val fooType: Type = object : TypeToken<Class<T?>?>() {}.type
         return gson.fromJson(data, fooType)
+    }
+
+    fun createDir() {
+        val file1 = File(
+            Intrinsics.stringPlus(
+                Environment.getExternalStorageDirectory().toString(),
+                Constants.PATH
+            )
+        )
+        if (!file1.exists()) {
+            file1.mkdir()
+            val file12 = File(
+                Intrinsics.stringPlus(
+                    Environment.getExternalStorageDirectory().toString(),
+                    "/SADIX-GAFI/.temp/"
+                )
+            )
+            if (!file12.exists()) {
+                file12.mkdir()
+            }
+        } else {
+            val file13 = File(
+                Intrinsics.stringPlus(
+                    Environment.getExternalStorageDirectory().toString(),
+                    "/SADIX-GAFI/.temp/"
+                )
+            )
+            if (!file13.exists()) {
+                file13.mkdir()
+            }
+        }
+        val file2 = File(
+            Intrinsics.stringPlus(
+                Environment.getExternalStorageDirectory().toString(),
+                Constants.PATH
+            )
+        )
+        if (!file2.exists()) {
+            file2.mkdir()
+            val file22 = File(
+                Intrinsics.stringPlus(
+                    Environment.getExternalStorageDirectory().toString(),
+                    "/SADIX-GAFI//SADIX-GAFI//img/"
+                )
+            )
+            if (!file22.exists()) {
+                file22.mkdir()
+            }
+        } else {
+            val file23 = File(
+                Intrinsics.stringPlus(
+                    Environment.getExternalStorageDirectory().toString(),
+                    "/SADIX-GAFI//SADIX-GAFI//img/"
+                )
+            )
+            if (!file23.exists()) {
+                file23.mkdir()
+            }
+        }
+        val file3 = File(
+            Intrinsics.stringPlus(
+                Environment.getExternalStorageDirectory().toString(),
+                Constants.PATH
+            )
+        )
+        if (!file3.exists()) {
+            file3.mkdir()
+            val file32 = File(
+                Intrinsics.stringPlus(
+                    Environment.getExternalStorageDirectory().toString(),
+                    "/SADIX-GAFI//SADIX-GAFI//download/"
+                )
+            )
+            if (!file32.exists()) {
+                file32.mkdir()
+                return
+            }
+            return
+        }
+        val file33 = File(
+            Intrinsics.stringPlus(
+                Environment.getExternalStorageDirectory().toString(),
+                "/SADIX-GAFI//SADIX-GAFI//download/"
+            )
+        )
+        if (!file33.exists()) {
+            file33.mkdir()
+        }
     }
 }

@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class Distribution(
     @PrimaryKey
     @ColumnInfo(name = "distribution_sid") var distributionSID: String,
-    @ColumnInfo(name = "distribution_name")var distributionName: String
+    @ColumnInfo(name = "distribution_name")var distributionName: String,
+    @ColumnInfo(name = "scheduling_cycle")var schedulingCycle: Int? = 0
 )
