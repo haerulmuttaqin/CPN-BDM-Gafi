@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_500"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/blue_500">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -23,8 +22,8 @@
             app:expandedTitleMarginBottom="16dp"
             app:expandedTitleMarginStart="16dp"
             app:expandedTitleTextAppearance="@style/expandedTitleStyle"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="GAFI BDM Apps v-01"
+            app:layout_scrollFlags="exitUntilCollapsed"
+            app:title="SADIX-GAFI Apps v01"
             app:titleEnabled="true">
 
             <RelativeLayout
@@ -41,7 +40,6 @@
                     android:src="@drawable/bg_tile_banner" />
 
                 <TextView
-                    android:visibility="invisible"
                     android:id="@+id/welcomeText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,33 +49,32 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:fontFamily="@font/medium"
-                    android:text="GAFI BDM"
-                    android:textSize="18dp"
+                    android:text="SADIX-GAFI"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/name"
-                    android:visibility="invisible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/welcomeText"
-                    android:layout_marginStart="16dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="26dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="26dp"
                     android:fontFamily="@font/book"
-                    android:textColor="@color/yellow_200"
-                    android:text="Welcome, Haerul Mu :)"
+                    android:paddingBottom="12dp"
+                    android:text="Welcome, ..."
+                    android:textColor="@color/yellow"
                     android:textSize="12sp" />
 
                 <ImageView
-                    android:layout_alignParentBottom="true"
-                    android:src="@drawable/app_logo"
                     android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_alignParentBottom="true"
                     android:paddingBottom="60dp"
-                    android:layout_height="140dp" />
-                
-
+                    android:src="@drawable/app_logo" />
             </RelativeLayout>
 
             <androidx.appcompat.widget.Toolbar
@@ -86,20 +83,71 @@
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/Theme.CPNBDMGafi.Toolbar"
                 app:elevation="0dp"
-                app:menu="@menu/header_main_menu"
-                app:layout_collapseMode="pin"
+                app:layout_collapseMode="none"
                 app:popupTheme="@style/Theme.CPNBDMGafi.PopupOverlay"
-                app:titleTextColor="@color/white" />
+                app:titleTextColor="@color/white">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="4dp"
+                        android:fontFamily="@font/bold"
+                        android:text="SADIX-GAFI"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/workingArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/bg_secondary"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:src="@drawable/ic_round_download"
+                            app:tint="@color/blue_200" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/bold"
+                            android:text="Working Area"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appbar"
-        app:layout_anchor="@id/appbar"
+        android:layout_below="@+id/appbar"
+        app:layout_anchor="@+id/appbar"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <RelativeLayout
@@ -129,215 +177,83 @@
                         android:background="@drawable/bg_round" />
 
                     <LinearLayout
+                        android:id="@+id/content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_module"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="26dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="26dp"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="3" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@color/gray_050" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="26dp"
+                            android:layout_marginEnd="26dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@+id/see_all"
+                                android:fontFamily="@font/medium"
+                                android:text="Information"
+                                android:textColor="@color/gray_400"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/see_all"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:text="See all"
+                                android:textColor="@color/blue_200"
+                                android:textSize="11dp" />
+                        </RelativeLayout>
 
                         <androidx.viewpager.widget.ViewPager
                             android:id="@+id/viewPagerHeader"
-                            android:foregroundGravity="center"
-                            android:overScrollMode="never"
-                            android:layout_marginBottom="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
                             android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
                             android:clipToPadding="false"
-                            android:layout_width="match_parent"
-                            android:layout_height="170dp" />
-
-                        <LinearLayout
-                            android:weightSum="3"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp">
-
-                            <LinearLayout
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="26dp">
-                                <com.google.android.material.card.MaterialCardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="80dp"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:background="?attr/selectableItemBackground"
-                                    app:cardCornerRadius="10dp"
-                                    app:strokeColor="@color/gray_050"
-                                    app:strokeWidth="0.9dp">
-                                    <ImageView
-                                        android:src="@drawable/ic_cust_dist"
-                                        android:layout_gravity="center"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"/>
-                                </com.google.android.material.card.MaterialCardView>
-                                <TextView
-                                    android:gravity="center"
-                                    android:layout_marginTop="5dp"
-                                    android:text="Customer Distribution"
-                                    android:fontFamily="@font/bold"
-                                    android:textColor="@color/blue_500"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="16dp">
-                                <com.google.android.material.card.MaterialCardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="80dp"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:background="?attr/selectableItemBackground"
-                                    app:cardCornerRadius="10dp"
-                                    app:strokeColor="@color/gray_050"
-                                    app:strokeWidth="0.9dp">
-                                    <ImageView
-                                        android:src="@drawable/ic_asset_dist"
-                                        android:layout_gravity="center"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"/>
-                                </com.google.android.material.card.MaterialCardView>
-                                <TextView
-                                    android:gravity="center"
-                                    android:layout_marginTop="5dp"
-                                    android:text="Asset Distribution"
-                                    android:fontFamily="@font/bold"
-                                    android:textColor="@color/blue_500"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="26dp"
-                                android:layout_marginEnd="16dp">
-                                <com.google.android.material.card.MaterialCardView
-                                    android:id="@+id/scanAssetButton"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="80dp"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:background="?attr/selectableItemBackground"
-                                    app:cardCornerRadius="10dp"
-                                    app:strokeColor="@color/gray_050"
-                                    app:strokeWidth="0.9dp">
-                                    <ImageView
-                                        android:src="@drawable/ic_scan_asset"
-                                        android:layout_gravity="center"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"/>
-                                </com.google.android.material.card.MaterialCardView>
-                                <TextView
-                                    android:gravity="center"
-                                    android:text="Scan \nAsset"
-                                    android:fontFamily="@font/bold"
-                                    android:layout_marginTop="5dp"
-                                    android:textColor="@color/blue_500"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:weightSum="3"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="26dp">
-
-                            <LinearLayout
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:background="?attr/selectableItemBackground"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="26dp">
-                                <com.google.android.material.card.MaterialCardView
-                                    android:id="@+id/dashboardPerformButton"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="80dp"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:background="?attr/selectableItemBackground"
-                                    app:cardCornerRadius="10dp"
-                                    app:strokeColor="@color/gray_050"
-                                    app:strokeWidth="0.9dp">
-                                    <ImageView
-                                        android:src="@drawable/ic_dashboard_asset"
-                                        android:layout_gravity="center"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"/>
-                                </com.google.android.material.card.MaterialCardView>
-                                <TextView
-                                    android:gravity="center"
-                                    android:layout_marginTop="5dp"
-                                    android:text="Dashboard Performance"
-                                    android:fontFamily="@font/bold"
-                                    android:textColor="@color/blue_500"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="16dp">
-                                <com.google.android.material.card.MaterialCardView
-                                    android:id="@+id/bdmActivityButton"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="80dp"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:background="?attr/selectableItemBackground"
-                                    app:cardCornerRadius="10dp"
-                                    app:strokeColor="@color/gray_050"
-                                    app:strokeWidth="0.9dp">
-                                    <ImageView
-                                        android:src="@drawable/ic_bdm_act"
-                                        android:layout_gravity="center"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"/>
-                                </com.google.android.material.card.MaterialCardView>
-                                <TextView
-                                    android:gravity="center"
-                                    android:layout_marginTop="5dp"
-                                    android:text="BDM \nActivity"
-                                    android:fontFamily="@font/bold"
-                                    android:textColor="@color/blue_500"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="26dp"
-                                android:layout_marginEnd="16dp">
-                            </LinearLayout>
-                        </LinearLayout>
+                            android:foregroundGravity="center"
+                            android:overScrollMode="never" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="180dp" />
                     </LinearLayout>
 
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
+
+                        <include layout="@layout/activity_main_base_shimmer" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
                 </RelativeLayout>
             </androidx.core.widget.NestedScrollView>
 
@@ -350,52 +266,47 @@
                 android:src="@drawable/bg_shadow_up_down"
                 android:visibility="invisible"
                 app:layout_anchor="@+id/scroll"
-                app:layout_anchorGravity="top|center" />
-
+                app:layout_anchorGravity="start" />
         </RelativeLayout>
-
     </RelativeLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:layout_alignParentBottom="true"
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         app:backgroundTint="#454545"
         app:fabAlignmentMode="center"
         app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="10dp"
-        app:fabCradleVerticalOffset="10dp"
-        tools:ignore="BottomAppBar">
+        app:fabCradleVerticalOffset="10dp">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
-            app:labelVisibilityMode="labeled"
             android:background="@android:color/transparent"
             app:itemIconTint="@drawable/bottom_nav_selector"
             app:itemTextColor="@drawable/bottom_nav_selector"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/main_menu" />
-
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_round_home_24"
-        android:scaleType="center"
-        android:clickable="true"
-        android:focusable="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:focusable="true"
+        android:scaleType="center"
+        android:src="@drawable/ic_round_home_24"
         app:backgroundTint="@color/blue_500"
-        app:tint="@color/white"
-        app:layout_anchor="@id/bottomAppBar" />
-
+        app:layout_anchor="@+id/bottomAppBar"
+        app:tint="@color/white" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

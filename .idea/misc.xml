@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/drawable/bg_shimmer_item.xml" value="0.24444444444444444" />
         <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/drawable/ic_outline_lock_24.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/drawable/ic_outline_vpn_key_24.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/drawable/ic_person_outline_24.xml" value="0.14895833333333333" />
+        <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/drawable/ic_round_download.xml" value="0.24444444444444444" />
+        <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/layout/activity_downloader.xml" value="0.20185185185185187" />
         <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/layout/activity_login.xml" value="0.20185185185185187" />
+        <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/layout/activity_main_base.xml" value="0.20185185185185187" />
+        <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/layout/activity_main_base_shimmer.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/lapto/AndroidStudioProjects/CPN-BDM-Gafi/app/src/main/res/layout/activity_photo_viewer.xml" value="0.25833333333333336" />
       </map>
     </option>

@@ -88,6 +88,7 @@ dependencies {
     implementation rootProject.ext.misc.glideAnotation
     implementation rootProject.ext.misc.jsoup
     implementation rootProject.ext.misc.retrofitHtmlConverter
+    implementation rootProject.ext.misc.shimmer
 
     testImplementation rootProject.ext.testing.junit
     androidTestImplementation rootProject.ext.testing.extJunit

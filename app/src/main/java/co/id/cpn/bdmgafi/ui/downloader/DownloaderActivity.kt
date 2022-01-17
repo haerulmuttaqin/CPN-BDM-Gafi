@@ -21,21 +21,6 @@ class DownloaderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDownloaderBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Initialize PRDownloader with read and connection timeout
-        val config = PRDownloaderConfig.newBuilder()
-            .setReadTimeout(30000)
-            .setConnectTimeout(30000)
-            .build()
-        PRDownloader.initialize(applicationContext, config)
-
-        binding.btnDownload.setOnClickListener {
-            val url =
-                "https://raw.githubusercontent.com/javahelps/externalsqliteimporter/master/README.md"
-            val fileName = "readme.md"
-
-            download(url, fileName)
-        }
     }
 
     private fun readFile(fileName: String) {
@@ -54,34 +39,5 @@ class DownloaderActivity : AppCompatActivity() {
             Toast.makeText(baseContext, "Error in reading the file $fileName", Toast.LENGTH_SHORT)
                 .show()
         }
-    }
-
-    private fun download(url: String, fileName: String) {
-        PRDownloader.download(
-            url,
-            baseContext.filesDir.absolutePath,
-            fileName
-        )
-            .build()
-            .setOnProgressListener {
-                // Update the progress
-                binding.progressBar.max = it.totalBytes.toInt()
-                binding.progressBar.progress = it.currentBytes.toInt()
-            }
-            .start(object : OnDownloadListener {
-                override fun onDownloadComplete() {
-                    // Update the progress bar to show the completeness
-                    binding.progressBar.max = 100
-                    binding.progressBar.progress = 100
-                    
-                    // Read the file
-                    readFile(fileName)
-                }
-
-                override fun onError(error: com.downloader.Error?) {
-                    Toast.makeText(baseContext, "Failed to download the $url", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
     }
 }

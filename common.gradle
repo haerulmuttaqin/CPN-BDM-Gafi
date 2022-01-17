@@ -64,7 +64,7 @@ dependencies {
     implementation rootProject.ext.misc.sqlcipher
     implementation rootProject.ext.misc.coil
     implementation rootProject.ext.misc.prDownloader
-    
+
     implementation rootProject.ext.architectureComponents.sqlite
     implementation rootProject.ext.architectureComponents.roomKtx
     

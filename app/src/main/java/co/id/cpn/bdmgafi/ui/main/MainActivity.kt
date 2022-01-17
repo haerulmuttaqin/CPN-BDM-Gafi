@@ -67,13 +67,13 @@ class MainActivity : BaseActivity() {
 
         setupBottomNavMenu()
 
-        binding.dashboardPerformButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, DashboardActivity::class.java))
-        }
-
-        binding.bdmActivityButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, DownloadCustomerDistribution::class.java))
-        }
+//        binding.dashboardPerformButton.setOnClickListener {
+//            startActivity(Intent(this@MainActivity, DashboardActivity::class.java))
+//        }
+//
+//        binding.bdmActivityButton.setOnClickListener {
+//            startActivity(Intent(this@MainActivity, DownloadCustomerDistribution::class.java))
+//        }
 
         binding.fab.setOnClickListener {
 
@@ -86,6 +86,10 @@ class MainActivity : BaseActivity() {
             binding.viewPagerHeader.setPadding(21, 0, 110, 0)
             headerAdapter.notifyDataSetChanged()
         })
+
+        binding.workingArea.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setupBottomNavMenu() {

@@ -51,7 +51,7 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getInfo(co.id.cpn.entity.util.Utils.getIMEIDeviceId(this), "1")
+//        viewModel.getInfo(co.id.cpn.entity.util.Utils.getIMEIDeviceId(this), "1")
         
         if (!hasPermissions(this, permissionList)) {
             ActivityCompat.requestPermissions(this, permissionList, REQ_CODE_PERMISSIONS)

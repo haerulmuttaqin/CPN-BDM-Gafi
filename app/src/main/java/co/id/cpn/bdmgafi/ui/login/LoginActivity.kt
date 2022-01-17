@@ -3,11 +3,11 @@ package co.id.cpn.bdmgafi.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.View
+import co.id.cpn.bdmgafi.R
 import co.id.cpn.bdmgafi.databinding.ActivityLoginBinding
-import co.id.cpn.bdmgafi.ui.main.MainActivity
 import co.id.cpn.bdmgafi.ui.base.BaseActivity
+import co.id.cpn.bdmgafi.ui.main.MainActivity
 import co.id.cpn.bdmgafi.util.AppUtils
 import co.id.cpn.data.local.spref.SharedPref
 import co.id.cpn.entity.DataBody
@@ -20,12 +20,8 @@ import co.id.cpn.entity.util.Utils.getDeviceID
 import com.google.gson.JsonObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.*
-import java.lang.NullPointerException
-import java.lang.StringBuilder
 import java.nio.charset.Charset
-import java.nio.file.NoSuchFileException
 import kotlin.jvm.internal.Intrinsics
-import kotlin.jvm.internal.Ref.ObjectRef
 import kotlin.text.Charsets.UTF_8
 
 class LoginActivity : BaseActivity() {
@@ -35,7 +31,7 @@ class LoginActivity : BaseActivity() {
     private lateinit var loginRequest: LoginRequest
 
     private lateinit var deviceID: String
-    private lateinit var handSetID: String
+    private lateinit var serverKey: String
 
     override fun initViewBinding() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -53,13 +49,7 @@ class LoginActivity : BaseActivity() {
         }
 
 
-        binding.textVersion.text = Utils.appVersion(this@LoginActivity)
-
-        val serverKey = SharedPref(this@LoginActivity).userKey.keyS
-        if (serverKey != null) {
-            binding.serverKeyLayout.visibility = View.GONE
-            binding.serverKey.setText(serverKey)
-        }
+        binding.textVersion.text = "App Version ${Utils.appVersion(this@LoginActivity)}"
 
 //        binding.rememberMe.setOnCheckedChangeListener { _, isChecked ->
 //            loginRequest.isRemember = isChecked
@@ -69,6 +59,27 @@ class LoginActivity : BaseActivity() {
             doLogin()
         }
 
+        binding.resetServerKey.setOnClickListener {
+            resetServerKey()
+        }
+
+    }
+
+    private fun resetServerKey() {
+        AppUtils.confirmDialog(this,
+            "Reset Server Key", "Are you sure?",
+            R.drawable.ic_undraw_login_re_4vu2, "Cancel", "Yes",
+            object: AppUtils.LeftRightConfirmListener {
+                override fun onLeftClick() {
+                    dialog?.dismiss()
+                }
+                override fun onRightRight() {
+                    removeConfigFile()
+                    startActivity(Intent(this@LoginActivity, LoginActivity::class.java))
+                    finish()
+                }
+            }
+        )
     }
 
     override fun observeViewModel() {
@@ -96,7 +107,6 @@ class LoginActivity : BaseActivity() {
                     binding.password.text.toString(),
                     binding.serverKey.text.toString(),
                     Utils.getIMEIDeviceId(this),
-//                    "352014090748281",
                     Utils.appVersion(this),
                     Utils.getOprName(this),
                     106.5231531,
@@ -117,6 +127,8 @@ class LoginActivity : BaseActivity() {
                 disableView()
             }
             is Resource.Success -> response.data.let {
+
+                createFile(".data.1.0.skey.txt", loginRequest.keyS)
 
                 for (dist in response.data.data.listDistribution) {
                     viewModel.storeDistribution(dist)
@@ -262,79 +274,39 @@ class LoginActivity : BaseActivity() {
 
 
     private fun readFileDeviceID(fileName: String) {
-        val myExternalFile = File(
-            Intrinsics.stringPlus(
-                Environment.getExternalStorageDirectory().toString(),
-                Constants.PATH
-            ), fileName
-        )
+        val myExternalFile = File(Environment.getExternalStorageDirectory().toString() + Constants.PATH, fileName)
         if (!myExternalFile.exists()) {
             createFile(fileName, getDeviceID(this).toString())
         }
         try {
-            val fileInputStream = FileInputStream(myExternalFile)
-            val bufferedReader = BufferedReader(InputStreamReader(fileInputStream))
-            val stringBuilder = StringBuilder()
-            var text = ""
-            while ((bufferedReader.readLine().also { text = it }) != null) {
-                stringBuilder.append(text)
-            }
-            deviceID = stringBuilder.toString()
-            val activityLoginBinding = binding
-            if (activityLoginBinding != null) {
-                activityLoginBinding.textHandsetKey.text = Intrinsics.stringPlus(
-                    "Handset Key: ",
-                    deviceID
-                )
-                fileInputStream.close()
-                return
-            }
+            val text = myExternalFile.readText(UTF_8)
+            deviceID = text
+            binding.textHandsetKey.text = "Handset Key: $deviceID"
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         }
     }
 
-//    private fun readFileHandSet(fileName: String) {
-//        val myExternalFile = File(
-//            Intrinsics.stringPlus(
-//                Environment.getExternalStorageDirectory().toString(),
-//                Constants.PATH
-//            ), fileName
-//        )
-//        if (myExternalFile.exists() && fileName != null) {
-//            if (fileName == null) {
-//                throw NullPointerException("null cannot be cast to non-null type kotlin.CharSequence")
-//            } else if (!Intrinsics.areEqual(
-//                    fileName as CharSequence?. trim ().toString() as Any,
-//                    "" as Any
-//                )
-//            ) {
-//                try {
-//                    val fileInputStream = FileInputStream(myExternalFile)
-//                    val bufferedReader =
-//                        BufferedReader(InputStreamReader(fileInputStream))
-//                    val stringBuilder = StringBuilder()
-//                    val text: ObjectRef<*> = ObjectRef<Any?>()
-//                    while (`LoginActivity$readFileHandSet$1`(
-//                            text,
-//                            bufferedReader
-//                        ).invoke() != null
-//                    ) {
-//                        stringBuilder.append(text.element as String)
-//                    }
-//                    this.handSetID = stringBuilder.toString()
-//                    Log.w(TAG, Intrinsics.stringPlus("handsetid: ", this.handSetID))
-//                    if (!Intrinsics.areEqual(this.handSetID as Any?, "" as Any)) {
-//                        binding.serverKeyLayout.visibility = View.VISIBLE
-//                        binding.serverKey.setText(this.handSetID)
-//                    }
-//                    fileInputStream.close()
-//                } catch (e: NoSuchFileException) {
-//                    e.printStackTrace()
-//                }
-//            }
-//        }
-//    }
+    private fun readFileServerKey(fileName: String) {
+        val myExternalFile = File(
+            Environment.getExternalStorageDirectory().toString() +
+            Constants.PATH, fileName
+        )
+        if (myExternalFile.exists()) {
+            try {
+                val text = myExternalFile.readText(UTF_8)
+                serverKey = text
+                if (serverKey != "") {
+                    binding.serverKeyLayout.visibility = View.GONE
+                    binding.serverKey.setText(serverKey)
+                } else {
+                    binding.serverKeyLayout.visibility = View.VISIBLE
+                }
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
+        }
+    }
 
     private fun createFile(fileName: String, content: String?) {
         try {
@@ -383,7 +355,7 @@ class LoginActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         readFileDeviceID(".data.1.0.device.txt")
-//        readFileHandSet(".data.1.0.skey.txt")
+        readFileServerKey(".data.1.0.skey.txt")
     }
 
 }

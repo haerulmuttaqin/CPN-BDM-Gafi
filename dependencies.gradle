@@ -69,6 +69,7 @@ ext {
             "glide"                     : "com.github.bumptech.glide:glide:4.9.0",
             "glideAnotation"            : "com.github.bumptech.glide:compiler:4.9.0",
             "jsoup"                     : "org.jsoup:jsoup:1.11.1",
-            "retrofitHtmlConverter"     : "com.github.slashrootv200:retrofit-html-converter:0.0.2"
+            "retrofitHtmlConverter"     : "com.github.slashrootv200:retrofit-html-converter:0.0.2",
+            "shimmer"                   : "com.facebook.shimmer:shimmer:0.5.0"
     ]
 }
