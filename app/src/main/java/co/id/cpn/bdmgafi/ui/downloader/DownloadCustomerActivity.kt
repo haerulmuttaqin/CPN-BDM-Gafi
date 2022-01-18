@@ -2,6 +2,7 @@ package co.id.cpn.bdmgafi.ui.downloader
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import co.id.cpn.bdmgafi.R
 import co.id.cpn.bdmgafi.databinding.ActivityDownloaderBinding
@@ -13,7 +14,7 @@ import java.io.BufferedReader
 import java.io.FileNotFoundException
 import java.io.InputStreamReader
 
-class DownloaderActivity : AppCompatActivity() {
+class DownloadCustomerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDownloaderBinding
 
@@ -21,6 +22,10 @@ class DownloaderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDownloaderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Handler().postDelayed({
+            finish()
+        }, 500)
     }
 
     private fun readFile(fileName: String) {

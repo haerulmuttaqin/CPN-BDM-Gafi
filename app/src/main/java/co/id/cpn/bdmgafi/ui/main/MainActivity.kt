@@ -14,6 +14,7 @@ import co.id.cpn.bdmgafi.ui.base.BaseActivity
 import co.id.cpn.bdmgafi.ui.customer.CustomerActivity
 import co.id.cpn.bdmgafi.ui.customer.DownloadCustomerDistribution
 import co.id.cpn.bdmgafi.ui.dashboard.DashboardActivity
+import co.id.cpn.bdmgafi.ui.downloader.DownloadCustomerActivity
 import co.id.cpn.bdmgafi.ui.login.LoginActivity
 import co.id.cpn.bdmgafi.ui.worker.DownloadOperations
 import co.id.cpn.bdmgafi.util.AppUtils
@@ -88,7 +89,7 @@ class MainActivity : BaseActivity() {
         })
 
         binding.workingArea.setOnClickListener {
-            finish()
+            startActivity(Intent(this, DownloadCustomerActivity::class.java))
         }
     }
 
@@ -125,7 +126,6 @@ class MainActivity : BaseActivity() {
             }
             false
         }
-
 
     fun showDialogLoadCustomer() {
         val li = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater

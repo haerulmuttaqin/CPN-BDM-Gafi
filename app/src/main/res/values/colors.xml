@@ -17,9 +17,10 @@
     <color name="yellow_200">#FFAB00</color>
     <color name="yellow_500">#D38E03</color>
     <color name="orange">#FF6D00</color>
-    <color name="gray_050">#EDEDED</color>
-    <color name="gray_080">#D1D1D1</color>
-    <color name="gray_100">#B1B1B1</color>
+    <color name="gray_050">#ededed</color>
+    <color name="gray_080">#d1d1d1</color>
+    <color name="gray_100">#b1b1b1</color>
+    <color name="gray_150">#9f9f9f</color>
     <color name="gray_200">#707070</color>
     <color name="gray_300">#474747</color>
     <color name="gray_400">#272727</color>
