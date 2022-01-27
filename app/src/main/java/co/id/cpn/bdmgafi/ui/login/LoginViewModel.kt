@@ -22,7 +22,7 @@ class LoginViewModel constructor(
     private val mainUseCase: MainUseCase,
     private val distUseCase: DistUseCase
 ) : ViewModel() {
-    
+
     private val _loginLiveData = MutableLiveData<Resource<DataBody<LoginResponse>>>()
     val loginLiveData: LiveData<Resource<DataBody<LoginResponse>>> get() = _loginLiveData
 
@@ -58,8 +58,17 @@ class LoginViewModel constructor(
             distUseCase.insertDistribution(distribution)
         }
         for (regionItem in dist.listRegion) {
-            val region =
-                Region(regionItem.regionSID, regionItem.regionName, dist.distributionSID, false, "")
+            val region = Region(
+                regionItem.regionSID,
+                regionItem.regionName,
+                dist.distributionSID,
+                false,
+                "",
+                "",
+                "",
+                0,
+                0
+            )
             viewModelScope.launch {
                 distUseCase.insertRegion(region)
             }

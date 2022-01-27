@@ -62,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:fontFamily="@font/bold"
+            android:text="@string/cancel"
             app:cornerRadius="@dimen/button_corner_radius"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             />

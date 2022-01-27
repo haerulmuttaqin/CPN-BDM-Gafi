@@ -1,5 +1,5 @@
 ext {
-    applicationId = "co.id.cpn.bdmgafi"
+    applicationId = "co.id.cpn.bdmgafi2"
     buildToolsVersion = "30.0.3"
     compileSdkVersion = 30
     targetSdkVersion = 30

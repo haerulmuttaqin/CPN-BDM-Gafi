@@ -1,6 +1,5 @@
 package co.id.cpn.bdmgafi.ui.splash
 
-import android.Manifest
 import android.Manifest.permission
 import android.app.AlertDialog
 import android.content.Context
@@ -22,10 +21,6 @@ import co.id.cpn.bdmgafi.ui.login.LoginActivity
 import co.id.cpn.bdmgafi.util.AppUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 class SplashActivity : AppCompatActivity() {
 
     companion object {
@@ -34,12 +29,12 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private val permissionList = arrayOf(
-        Manifest.permission.READ_PHONE_STATE,
-        Manifest.permission.ACCESS_COARSE_LOCATION,
-        Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.CAMERA,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.READ_EXTERNAL_STORAGE
+        permission.READ_PHONE_STATE,
+        permission.ACCESS_COARSE_LOCATION,
+        permission.ACCESS_FINE_LOCATION,
+        permission.CAMERA,
+        permission.WRITE_EXTERNAL_STORAGE,
+        permission.READ_EXTERNAL_STORAGE
     )
     
     private lateinit var binding: ActivitySplashBinding
@@ -52,17 +47,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //        viewModel.getInfo(co.id.cpn.entity.util.Utils.getIMEIDeviceId(this), "1")
-        
-        if (!hasPermissions(this, permissionList)) {
-            ActivityCompat.requestPermissions(this, permissionList, REQ_CODE_PERMISSIONS)
-        } else {
-            if (permissionChecker()) {
-                showPermissionDialog()
-            } else {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                finish()
-            }
-        }
 
     }
 
@@ -123,10 +107,12 @@ class SplashActivity : AppCompatActivity() {
             "Access File Permission",
             "Please allow app for access storage",
             R.drawable.ic_permission,
-            "",
+            "Cancel",
             "OK",
             object : AppUtils.LeftRightConfirmListener {
-                override fun onLeftClick() {}
+                override fun onLeftClick() {
+                    finish()
+                }
                 override fun onRightRight() {
                     if (VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         try {
@@ -184,6 +170,20 @@ class SplashActivity : AppCompatActivity() {
                     REQ_CODE_PERMISSIONS
                 )
             } 
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!hasPermissions(this, permissionList)) {
+            ActivityCompat.requestPermissions(this, permissionList, REQ_CODE_PERMISSIONS)
+        } else {
+            if (permissionChecker()) {
+                showPermissionDialog()
+            } else {
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                finish()
+            }
         }
     }
 }

@@ -19,7 +19,7 @@
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
-    <style name="Theme.CPNBDMGafi.SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.CPNBDMGafi.SplashScreen" parent="Theme.CPNBDMGafi.NoActionBar">
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:statusBarColor">@color/blue_500</item>
         <item name="android:windowBackground">@drawable/bg_splash</item>
@@ -120,6 +120,12 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="ClickableBorderless">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <style name="Theme.NavSample.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

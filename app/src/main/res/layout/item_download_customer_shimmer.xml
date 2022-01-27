@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
+
+        <RelativeLayout
+            android:id="@+id/progressLayout"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_shimmer_rounded"
+                android:padding="10dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@+id/progressLayout"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/bg_shimmer_item"
+                android:fontFamily="@font/medium" />
+
+            <TextView
+                android:id="@+id/textProgressSize"
+                android:layout_width="100dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="45dp"
+                android:background="@drawable/bg_shimmer_item"
+                android:gravity="end"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:typeface="sans" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        style="@style/Divider"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+</LinearLayout>
