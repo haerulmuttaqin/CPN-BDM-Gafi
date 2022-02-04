@@ -2,11 +2,13 @@ package co.id.cpn.bdmgafi.ui.main
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import co.id.cpn.bdmgafi.ui.worker.DownloadOperations
-import co.id.cpn.bdmgafi.ui.worker.DownloadOperations2
+import co.id.cpn.bdmgafi.ui.worker.DownloadRegionOperations
 import co.id.cpn.domain.distribution.DistUseCase
 import co.id.cpn.domain.main.MainUseCase
 import co.id.cpn.domain.news.NewsUseCase
@@ -38,12 +40,8 @@ constructor(
         return workManager.getWorkInfosByTagLiveData(tag)
     }
 
-    internal fun apply(downloadOperations: DownloadOperations) {
-        downloadOperations.continuation.enqueue()
-    }
-
-    internal fun apply2(downloadOperations: DownloadOperations2) {
-        downloadOperations.continuation.enqueue()
+    internal fun applyDownloadCustomer(downloadRegionOperations: DownloadRegionOperations) {
+        downloadRegionOperations.continuation.enqueue()
     }
 
     internal fun cancel() {
@@ -54,7 +52,7 @@ constructor(
     val sqLite: LiveData<Resource<DataBody<JsonObject>>> get() = _sqLite
 
     val distributions: LiveData<List<Distribution>> = distUseCase.getDistributions()
-    fun regions(distributionSID: String) : LiveData<List<Region>> = distUseCase.getRegionsBy(distributionSID = distributionSID)
+    fun regions(distributionSID: String): LiveData<List<Region>> = distUseCase.getRegionsBy(distributionSID = distributionSID)
     
     fun getNews(): LiveData<List<News>> = newsUseCase.getNews()
 

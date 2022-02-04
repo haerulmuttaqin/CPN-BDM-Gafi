@@ -3,32 +3,16 @@ package co.id.cpn.bdmgafi.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.*
-import androidx.work.WorkInfo
 import co.id.cpn.bdmgafi.R
 import co.id.cpn.bdmgafi.databinding.ActivityMainBaseBinding
 import co.id.cpn.bdmgafi.ui.adapter.ViewPagerAdapter
 import co.id.cpn.bdmgafi.ui.base.BaseActivity
-import co.id.cpn.bdmgafi.ui.customer.CustomerActivity
-import co.id.cpn.bdmgafi.ui.customer.DownloadCustomerDistribution
-import co.id.cpn.bdmgafi.ui.dashboard.DashboardActivity
 import co.id.cpn.bdmgafi.ui.downloader.DownloadCustomerActivity
 import co.id.cpn.bdmgafi.ui.login.LoginActivity
-import co.id.cpn.bdmgafi.ui.worker.DownloadOperations
 import co.id.cpn.bdmgafi.util.AppUtils
-import co.id.cpn.bdmgafi.util_view.DistributionDropdown
-import co.id.cpn.bdmgafi.util_view.RegionDropdown
 import co.id.cpn.data.local.spref.SharedPref
-import co.id.cpn.entity.DataBody
-import co.id.cpn.entity.Region
-import co.id.cpn.entity.Resource
-import co.id.cpn.entity.util.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.JsonObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -62,7 +46,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         })*/
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -126,82 +110,5 @@ class MainActivity : BaseActivity() {
             }
             false
         }
-
-    fun showDialogLoadCustomer() {
-        val li = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = li.inflate(R.layout.dialog_load_cutomer, null)
-        val dialog = BottomSheetDialog(this@MainActivity, R.style.AppBottomSheetDialogTheme)
-        val closeButton = view.findViewById<ImageView>(R.id.close_button)
-        val cancelButton = view.findViewById<Button>(R.id.cancel_button)
-        val processButton = view.findViewById<Button>(R.id.process_button)
-        val distDropdown = view.findViewById<DistributionDropdown>(R.id.distribution_dropdown)
-        val regionDropdown = view.findViewById<RegionDropdown>(R.id.region_dropdown)
-        processButton.isEnabled = false
-        viewModel.distributions.observe(this, { dist ->
-            distDropdown.setupData(dist)
-            distDropdown.onItemClickListener =
-                AdapterView.OnItemClickListener { _, _, position, _ ->
-                    val distributionSID = dist[position].distributionSID
-                    viewModel.regions(distributionSID).observe(this, { region ->
-                        regionDropdown.setupData(region)
-                        processButton.isEnabled = true
-                        processButton.setOnClickListener {
-                            val regionsSelected = arrayListOf<Region>()
-                            region.forEach {
-                                if (it.isSelected) {
-                                    regionsSelected.add(it)
-                                }
-                            }
-                            viewModel.deleteAllTransactionData()
-                            showDialogLoadSQLite(distributionSID, regionsSelected)
-                            dialog.dismiss()
-                        }
-                    })
-                }
-        })
-
-        cancelButton.setOnClickListener { dialog.dismiss() }
-        closeButton.setOnClickListener { dialog.dismiss() }
-        dialog.setCancelable(false)
-        dialog.setContentView(view)
-        dialog.show()
-    }
-    
-
-    fun showDialogLoadSQLite(distribution: String, regions: List<Region>) {
-        val li = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = li.inflate(R.layout.dialog_sqlite_cutomer, null)
-
-        val close = view.findViewById<ImageView>(R.id.close_button)
-        val downloadContainer = view.findViewById<LinearLayout>(R.id.downloadContainer)
-        val downloadList = arrayListOf<LinearLayout>()
-
-        val work = DownloadOperations.Builder(
-            applicationContext,
-            regions,
-            downloadContainer,
-            downloadList,
-            viewModel,
-            this
-        ).build()
-        
-        viewModel.apply(work)
-
-        val dialog = BottomSheetDialog(this@MainActivity, R.style.AppBottomSheetDialogTheme)
-        dialog.setOnShowListener { dialog ->
-            val d = dialog as BottomSheetDialog
-            val bottomSheet = d.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout
-            val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-        }
-
-        close.setOnClickListener { 
-            viewModel.cancel()
-            dialog.dismiss()   
-        }
-        dialog.setCancelable(false)
-        dialog.setContentView(view)
-        dialog.show()
-    }
 
 }

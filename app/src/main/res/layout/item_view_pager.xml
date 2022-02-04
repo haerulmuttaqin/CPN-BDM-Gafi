@@ -18,12 +18,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/mealThumb"
                 android:layout_width="match_parent"
-                android:scaleType="centerCrop"
+                android:layout_height="match_parent"
                 android:background="@drawable/bg_tile_banner_gray"
-                android:layout_height="match_parent" />
+                android:scaleType="centerCrop" />
 <!--            <ImageView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:scaleType="centerCrop"-->

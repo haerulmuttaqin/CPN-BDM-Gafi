@@ -10,8 +10,6 @@ import java.util.*
 import kotlin.jvm.internal.Intrinsics
 
 
-
-
 class DistributionDropdown(context: Context?, attributeSet2: AttributeSet?) :
     AppCompatAutoCompleteTextView(
         context!!, attributeSet2
@@ -44,7 +42,13 @@ class DistributionDropdown(context: Context?, attributeSet2: AttributeSet?) :
         for (data in distributions) {
             label.add(data.distributionName)
         }
-        setAdapter<ArrayAdapter<*>>(ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, label))
+        setAdapter<ArrayAdapter<String>>(
+            ArrayAdapter(
+                context,
+                android.R.layout.simple_spinner_dropdown_item,
+                label
+            )
+        )
         setOnClickListener { showDropDown() }
         setOnItemClickListener { parent, _, position, _ ->
             this.dataSelectedName = parent.getItemAtPosition(position).toString()

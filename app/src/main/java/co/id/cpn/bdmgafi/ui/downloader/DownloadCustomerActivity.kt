@@ -41,8 +41,8 @@ class DownloadCustomerActivity : AppCompatActivity() {
                 viewModel.submitSelectedDistribution(dist[position].distributionSID)
                 viewModel.regions(viewModel.distributionSelected.value!!).observe(this, { regions ->
                     binding.recyclerView.adapter = adapter
+                    adapter.addData(regions)
                     Handler().postDelayed({
-                        adapter.addData(regions)
                         binding.scroll.visibility = View.VISIBLE
                         binding.shimmer.visibility = View.GONE
                         binding.shimmer.stopShimmer()
