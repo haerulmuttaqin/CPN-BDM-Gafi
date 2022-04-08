@@ -12,13 +12,11 @@ import co.id.cpn.bdmgafi.ui.adapter.ViewPagerCustAdapter
 import co.id.cpn.bdmgafi.ui.base.BaseActivity
 import co.id.cpn.bdmgafi.ui.distribution.fragment.CustomerListFragment
 import co.id.cpn.bdmgafi.ui.distribution.fragment.CustomerMapFragment
-import co.id.cpn.bdmgafi.ui.main.MainViewModel
 import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
 
 class DistributionActivity : BaseActivity() {
     private lateinit var binding: ActivityCustDistBinding
     private val viewModel: DistributionViewModel by viewModels()
-    private val mainViewModel: MainViewModel by viewModels()
     private val adapter: ViewPagerCustAdapter? = null
     private var dialogEmpty = false
     private var inspectionCriteriaFilter = ""
@@ -48,10 +46,10 @@ class DistributionActivity : BaseActivity() {
                     title = "Asset Distribution"
                 }
             }
-            mainViewModel.distributions.observe(this, { dist ->
+            viewModel.distributions.observe(this, { dist ->
                 binding.distributionDropdown.setupData(dist)
                 binding.distributionDropdown.setOnItemClickListener { _, _, position, _ ->
-                    mainViewModel.submitSelectedDistribution(dist[position].distributionSID)
+                    viewModel.submitSelectedDistribution(dist[position].distributionSID)
                     setupViewPager(binding.viewPager, distType!!)
                 }
             })
@@ -65,13 +63,13 @@ class DistributionActivity : BaseActivity() {
             if (type == "cust") {
                 viewPagerAdapter.addFragment(
                     CustomerMapFragment.newInstance(
-                        mainViewModel.distributionSelected.value!!,
+                        viewModel.distributionSelected.value!!,
                         ""
                     ), "CUSTOMER"
                 )
                 viewPagerAdapter.addFragment(
                     CustomerListFragment.newInstance(
-                        mainViewModel.distributionSelected.value!!,
+                        viewModel.distributionSelected.value!!,
                         ""
                     ), "CUSTOMER"
                 )

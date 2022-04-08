@@ -2,6 +2,7 @@ package co.id.cpn.bdmgafi.di
 
 import co.id.cpn.bdmgafi.ui.customer.CustomerViewModel
 import co.id.cpn.bdmgafi.ui.dashboard.DashboardViewModel
+import co.id.cpn.bdmgafi.ui.distribution.DistributionViewModel
 import co.id.cpn.bdmgafi.ui.login.LoginViewModel
 import co.id.cpn.bdmgafi.ui.main.MainViewModel
 import co.id.cpn.bdmgafi.ui.splash.SplashViewModel
@@ -14,4 +15,5 @@ val viewModelModule = module {
     viewModel { CustomerViewModel(get()) }
     viewModel { DashboardViewModel(get(), get(), get()) }
     viewModel { MainViewModel(get(), get(), get(), get()) }
+    viewModel { DistributionViewModel(get()) }
 }
