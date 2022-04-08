@@ -10,6 +10,21 @@ import kotlinx.coroutines.flow.Flow
 class MainUseCaseImpl constructor(private val repository: MainRepository) : MainUseCase {
     override suspend fun postLogin(loginRequest: LoginRequest): Flow<Resource<DataBody<LoginResponse>>> = repository.postLogin(loginRequest)
     override suspend fun getCustomerSQLite(body: JsonObject, token: String) : Flow<Resource<DataBody<JsonObject>>> = repository.getCustomerSQLite(body, token)
+    override suspend fun updateDownloadStatus(
+        regionSid: String,
+        downloadStatus: String,
+        downloadInfo: String,
+        progress: Int, size: Int
+    ) {
+        repository.updateDownloadStatus(regionSid, downloadStatus, downloadInfo, progress, size)
+    }
+
+    override suspend fun insertUser(userData: UserData) = repository.insertUser(userData)
+    override fun getUserData(): LiveData<UserData> = repository.getUserData()
+
+    override suspend fun insertModules(list: List<Module>) = repository.insertModules(list)
+    override fun getModule(roles: List<Int>): LiveData<List<Module>> = repository.getModule(roles)
+
     override suspend fun getToken(auth: String) : Flow<Resource<DataBody<JsonObject>>> = repository.getToken(auth)
     override suspend fun getInfo(keyH: String, type: String): Flow<Resource<DataBody<JsonObject>>> = repository.getInfo(keyH, type)
     

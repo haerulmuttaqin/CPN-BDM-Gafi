@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
     <item android:drawable="@drawable/bg_tile_splash"/>
-    <item android:gravity="center" android:width="180dp" android:height="83dp">
-        <bitmap
-            android:gravity="fill_horizontal|fill_vertical"
-            android:src="@drawable/app_logo"/>
+    <item android:gravity="center" android:height="83dp" android:width="180dp">
+        <bitmap android:gravity="fill" android:src="@drawable/app_logo"/>
     </item>
 </layer-list>

@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import co.id.cpn.entity.Distribution
+import co.id.cpn.entity.Region
 
 @Dao
 interface DistributionDao {
@@ -20,4 +21,7 @@ interface DistributionDao {
     
     @Query("DELETE FROM Distribution")
     fun deleteAll()
+
+    @Query("SELECT * FROM Region WHERE region_sid =:regionSID")
+    fun getRegionBySID(regionSID: String): LiveData<Region>
 }

@@ -5,9 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class LoginResponse(
 	@field:SerializedName("list_distribution") val listDistribution: List<ListDistributionItem>,
 	@field:SerializedName("authorization") val authorization: String,
+	@field:SerializedName("rctl_sid") val rctlSid: String,
+	@field:SerializedName("user_sid") val userSid: String,
 	@field:SerializedName("user_role") val userRole: String,
 	@field:SerializedName("user_name") val userName: String,
-	@field:SerializedName("user_sid") val userSid: String,
 )
 
 data class ListDistributionItem(

@@ -7,6 +7,7 @@ class SPFKeys {
         const val SPLASH = "splash"
         const val LOGIN = "login"
         const val USER = "user"
+        const val USER_KEY = "user_key"
         const val TOKEN = "token"
         const val SQLITE = "sqlite"
         const val SERVER_DATA = "server"

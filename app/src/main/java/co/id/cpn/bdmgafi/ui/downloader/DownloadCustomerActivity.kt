@@ -30,17 +30,26 @@ class DownloadCustomerActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         title = "Working Area"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        viewModel.cancelWork()
         viewModel.distributions.observe(this, { dist ->
             binding.distributionDropdown.setupData(dist)
             binding.distributionDropdown.setOnItemClickListener { _, _, position, _ ->
+                val adapter: DownloadCustomerAdapter by lazy {
+                    DownloadCustomerAdapter(
+                        this,
+                        this,
+                        viewModel,
+                        viewModel.distributionSelected.value
+                    )
+                }
+                binding.recyclerView.scrollToPosition(0)
                 binding.scroll.visibility = View.GONE
                 binding.selectView.visibility = View.GONE
                 binding.shimmer.visibility = View.VISIBLE
                 binding.shimmer.startShimmer()
+                binding.recyclerView.adapter = adapter
                 viewModel.submitSelectedDistribution(dist[position].distributionSID)
                 viewModel.regions(viewModel.distributionSelected.value!!).observe(this, { regions ->
-                    binding.recyclerView.adapter = adapter
                     adapter.addData(regions)
                     Handler().postDelayed({
                         binding.scroll.visibility = View.VISIBLE
@@ -51,15 +60,6 @@ class DownloadCustomerActivity : AppCompatActivity() {
                 })
             }
         })
-    }
-
-    private val adapter: DownloadCustomerAdapter by lazy {
-        DownloadCustomerAdapter(
-            this,
-            this,
-            viewModel,
-            viewModel.distributionSelected.value
-        )
     }
 
     private fun readFile(fileName: String) {

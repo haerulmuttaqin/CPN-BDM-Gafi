@@ -73,7 +73,10 @@ dependencies {
 
     implementation rootProject.ext.misc.jsoup
     implementation rootProject.ext.misc.retrofitHtmlConverter
-    
+
+    implementation rootProject.ext.misc.analytics
+    implementation rootProject.ext.misc.crashlytics
+
     implementation rootProject.ext.architectureComponents.paging
     implementation rootProject.ext.architectureComponents.livedataKtx
     implementation rootProject.ext.architectureComponents.workManager

@@ -15,11 +15,12 @@ import co.id.cpn.domain.news.NewsUseCase
 import co.id.cpn.entity.*
 import co.id.cpn.entity.util.Constants
 import co.id.cpn.entity.util.ResultState
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.jvm.internal.Intrinsics
+
+
+
 class MainViewModel
 constructor(
     private val mainUseCase: MainUseCase,
@@ -44,18 +45,25 @@ constructor(
         downloadRegionOperations.continuation.enqueue()
     }
 
-    internal fun cancel() {
+    internal fun cancelWork() {
         workManager.cancelUniqueWork(Constants.DOWNLOAD_WORK)
     }
 
-    private val _sqLite = MutableLiveData<Resource<DataBody<JsonObject>>>()
-    val sqLite: LiveData<Resource<DataBody<JsonObject>>> get() = _sqLite
+    internal fun cancelWorkByTag(tag: String) {
+        workManager.cancelUniqueWork(tag)
+    }
+
+    fun updateDownloadStatus(regionSid: String, downloadStatus: String, downloadInfo: String, size: Int, progress: Int) {
+        viewModelScope.launch {
+            mainUseCase.updateDownloadStatus(regionSid, downloadStatus, downloadInfo, progress, size)
+        }
+    }
 
     val distributions: LiveData<List<Distribution>> = distUseCase.getDistributions()
     fun regions(distributionSID: String): LiveData<List<Region>> = distUseCase.getRegionsBy(distributionSID = distributionSID)
-    
-    fun getNews(): LiveData<List<News>> = newsUseCase.getNews()
+    fun regionsList(distributionSID: String): List<Region> = distUseCase.getRegionsListBy(distributionSID = distributionSID)
 
+    fun getNews(): LiveData<List<News>> = newsUseCase.getNews()
     suspend fun provideNews() {
         newsUseCase.provideNews().collectLatest { res ->
             Log.w("TAG", "provideNews view model: $res")
@@ -97,22 +105,39 @@ constructor(
             newsUseCase.insert(news)
         }
     }
-    
-    fun getCustomerSQLite(distributionSID: String, regionSID: String, token: String) {
-        val body = JsonObject()
-        val regions = JsonArray()
-        regions.add(regionSID)
-        body.addProperty("distribution_sid", distributionSID)
-        body.add("list_region", regions)
-        viewModelScope.launch {
-            _sqLite.value = Resource.Loading()
-            mainUseCase.getCustomerSQLite(
-                body = body,
-                token = token
-            ).collect {
-                _sqLite.value = it
+
+    private val rolesData = arrayListOf<Int>()
+
+    fun getRolesData(): ArrayList<Int> {
+        return rolesData
+    }
+
+    fun getUserModule(roles: String) {
+        Intrinsics.checkNotNullParameter(roles, "roles")
+        try {
+            val `$this$forEachIndexed$iv` = roles.toCharArray()
+            var `index$iv` = 0
+            val length = `$this$forEachIndexed$iv`.size
+            var i = 0
+            while (i < length) {
+                val `index$iv2` = `index$iv` + 1
+                if (Intrinsics.areEqual(
+                        `$this$forEachIndexed$iv`[i].toString() as Any,
+                        "1" as Any
+                    )
+                ) {
+                    getRolesData().add(Integer.valueOf(`index$iv`))
+                }
+                i++
+                `index$iv` = `index$iv2`
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+    }
+
+    fun modules(roles: List<Int>): LiveData<List<Module>> {
+        return mainUseCase.getModule(roles)
     }
 
     val assetsTemp: LiveData<List<Asset>> = mainUseCase.getAssetsTemp()
@@ -132,6 +157,10 @@ constructor(
             mainUseCase.deleteCustomerTypes()
             mainUseCase.deleteProductsOrders()
         }
+    }
+
+    fun regionsBySID(regionSID: String): LiveData<Region> {
+        return distUseCase.getRegionsBySID(regionSID)
     }
 }
 

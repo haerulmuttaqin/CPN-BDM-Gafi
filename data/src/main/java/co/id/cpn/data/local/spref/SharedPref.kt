@@ -51,11 +51,11 @@ class SharedPref(context: Context) {
 
     var userKey: LoginRequest
         get() {
-            val json = INSTANCE.getString(SPFKeys.USER, "{}")!!
+            val json = INSTANCE.getString(SPFKeys.USER_KEY, "{}")!!
             return gson.fromJson<LoginRequest>(json, LoginRequest::class.java)
         }
         set(value) {
-            INSTANCE.edit().putString(SPFKeys.USER, gson.toJson(value)).apply()
+            INSTANCE.edit().putString(SPFKeys.USER_KEY, gson.toJson(value)).apply()
         }
 
     var taskSQLite: List<TaskSQLite>

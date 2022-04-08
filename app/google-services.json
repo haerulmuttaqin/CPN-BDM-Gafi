@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "894094312825",
+    "project_id": "bdm-gafi",
+    "storage_bucket": "bdm-gafi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894094312825:android:8b1bd8920e72c513e35ba8",
+        "android_client_info": {
+          "package_name": "co.id.cpn.bdmgafi2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894094312825-kfd4ee0li97ctccdnqbor6ugoamrhv5d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.id.cpn.bdmgafi2",
+            "certificate_hash": "2b01bc9b3e7fe38f7ca1932dcd5696fd81bd70d8"
+          }
+        },
+        {
+          "client_id": "894094312825-kc45mvkbcq90eo5tkmhopslsoo2hb32v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXmRR8g8AJN2zSgBhjEsCnuLGWuG04KXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894094312825-kc45mvkbcq90eo5tkmhopslsoo2hb32v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

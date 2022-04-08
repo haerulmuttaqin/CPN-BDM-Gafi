@@ -1,4 +1,4 @@
-package co.id.cpn.bdmgafi.ui.customer
+package co.id.cpn.bdmgafi.ui.customer.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import co.id.cpn.bdmgafi.databinding.ItemCustomerBinding
-import co.id.cpn.entity.Customer
 import co.id.cpn.entity.CustomerItem
 
 class CustomerAdapter(private val onItemClicked: (CustomerItem) -> Unit) :

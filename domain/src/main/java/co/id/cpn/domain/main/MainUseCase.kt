@@ -13,11 +13,19 @@ interface MainUseCase {
     suspend fun getToken(auth: String): Flow<Resource<DataBody<JsonObject>>>
     suspend fun getCustomerSQLite(body: JsonObject, token: String): Flow<Resource<DataBody<JsonObject>>>
 
+    suspend fun updateDownloadStatus(regionSid: String, downloadStatus: String, downloadInfo: String, progress: Int, size: Int)
+
+    suspend fun insertUser(userData: UserData)
+    fun getUserData(): LiveData<UserData>
+
+    suspend fun insertModules(list: List<Module>)
+    fun getModule(roles: List<Int>): LiveData<List<Module>>
+
     suspend fun insertAsset(asset: Asset)
     suspend fun insertCustomer(customer: Customer)
     suspend fun insertCustomerType(customerType: CustomerType)
     suspend fun insertProductOrder(productOrder: ProductOrder)
-    
+
     suspend fun insertAsset(asset: List<Asset>)
     suspend fun insertCustomer(customer: List<Customer>)
     suspend fun insertCustomerType(customerType: List<CustomerType>)
@@ -28,7 +36,7 @@ interface MainUseCase {
     fun getCustomers(): LiveData<List<Customer>>
     fun getCustomerTypes(): LiveData<List<CustomerType>>
     fun getProductsOrders(): LiveData<List<ProductOrder>>
-    
+
     fun getCustomersItems(): LiveData<List<CustomerItem>>
     fun getCustomerBy(customerSID: String): LiveData<CustomerItem>
 

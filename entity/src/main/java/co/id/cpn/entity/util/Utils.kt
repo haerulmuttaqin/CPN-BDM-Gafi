@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Environment
 import android.preference.PreferenceManager
@@ -247,7 +249,7 @@ object Utils {
             val file22 = File(
                 Intrinsics.stringPlus(
                     Environment.getExternalStorageDirectory().toString(),
-                    "/SADIX-GAFI//SADIX-GAFI//img/"
+                    "/SADIX-GAFI//img/"
                 )
             )
             if (!file22.exists()) {
@@ -257,7 +259,7 @@ object Utils {
             val file23 = File(
                 Intrinsics.stringPlus(
                     Environment.getExternalStorageDirectory().toString(),
-                    "/SADIX-GAFI//SADIX-GAFI//img/"
+                    "/SADIX-GAFI//img/"
                 )
             )
             if (!file23.exists()) {
@@ -275,7 +277,7 @@ object Utils {
             val file32 = File(
                 Intrinsics.stringPlus(
                     Environment.getExternalStorageDirectory().toString(),
-                    "/SADIX-GAFI//SADIX-GAFI//download/"
+                    "/SADIX-GAFI//download/"
                 )
             )
             if (!file32.exists()) {
@@ -287,11 +289,39 @@ object Utils {
         val file33 = File(
             Intrinsics.stringPlus(
                 Environment.getExternalStorageDirectory().toString(),
-                "/SADIX-GAFI//SADIX-GAFI//download/"
+                "/SADIX-GAFI//download/"
             )
         )
         if (!file33.exists()) {
             file33.mkdir()
         }
+    }
+
+
+    fun isNetworkAvailable(context: Context?): Boolean {
+        if (context == null) return false
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                        return true
+                    }
+                }
+            }
+        } else {
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+                return true
+            }
+        }
+        return false
     }
 }

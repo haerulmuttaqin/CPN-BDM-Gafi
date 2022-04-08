@@ -42,7 +42,7 @@ object Constants {
     const val PATH = "/SADIX-GAFI/"
     const val PATH_DOWNLOAD = "/SADIX-GAFI//download/"
     const val PATH_IMG = "/SADIX-GAFI//img/"
-    const val PATH_TEMP = ".temp/"
+    const val PATH_TEMP = "/SADIX-GAFI//.temp/"
     const val PROGRESS = "progress"
     const val RCTL_SID = 2154
     const val REGION = "region_input_work_gafi_application"

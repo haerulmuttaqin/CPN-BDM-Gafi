@@ -4,12 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.id.cpn.bdmgafi.R
 import co.id.cpn.domain.distribution.DistUseCase
 import co.id.cpn.domain.main.MainUseCase
-import co.id.cpn.entity.DataBody
-import co.id.cpn.entity.Distribution
-import co.id.cpn.entity.Region
-import co.id.cpn.entity.Resource
+import co.id.cpn.entity.*
 import co.id.cpn.entity.login.ListDistributionItem
 import co.id.cpn.entity.login.LoginRequest
 import co.id.cpn.entity.login.LoginResponse
@@ -31,6 +29,18 @@ class LoginViewModel constructor(
 
     private val _errorMessage = MutableLiveData<SingleEvent<Any>>()
     val errorMessage: LiveData<SingleEvent<Any>> get() = _errorMessage
+
+    fun generateModules() {
+        val modules = arrayListOf<Module>()
+        modules.add(Module(0, "Customer Distribution", R.drawable.ic_cust_dist))
+        modules.add(Module(1, "Asset Distribution", R.drawable.ic_asset_dist))
+        modules.add(Module(2, "Scan Asset", R.drawable.ic_scan_asset))
+        modules.add(Module(3, "Dashboard Performance", R.drawable.ic_dashboard_asset))
+        modules.add(Module(4, "BDM Activity", R.drawable.ic_bdm_act))
+        viewModelScope.launch {
+            mainUseCase.insertModules(modules)
+        }
+    }
 
     fun doLogin(loginRequest: LoginRequest) {
         viewModelScope.launch {

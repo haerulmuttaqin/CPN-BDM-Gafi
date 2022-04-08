@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:fitsSystemWindows="true"
         app:elevation="0dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -22,7 +23,7 @@
             app:expandedTitleMarginBottom="16dp"
             app:expandedTitleMarginStart="16dp"
             app:expandedTitleTextAppearance="@style/expandedTitleStyle"
-            app:layout_scrollFlags="exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="SADIX-GAFI Apps v01"
             app:titleEnabled="true">
 
@@ -83,7 +84,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/Theme.CPNBDMGafi.Toolbar"
                 app:elevation="0dp"
-                app:layout_collapseMode="none"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/Theme.CPNBDMGafi.PopupOverlay"
                 app:titleTextColor="@color/white">
 
@@ -154,16 +156,12 @@
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/rounded_dialog"
-            android:fillViewport="true"
-            android:fitsSystemWindows="true"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            android:background="@drawable/rounded_dialog">
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/scroll"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true">
+                android:layout_height="match_parent">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -182,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_module"
@@ -250,7 +248,7 @@
                         android:id="@+id/shimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <include layout="@layout/activity_main_base_shimmer" />
                     </com.facebook.shimmer.ShimmerFrameLayout>
@@ -266,7 +264,7 @@
                 android:src="@drawable/bg_shadow_up_down"
                 android:visibility="invisible"
                 app:layout_anchor="@+id/scroll"
-                app:layout_anchorGravity="start" />
+                app:layout_anchorGravity="top" />
         </RelativeLayout>
     </RelativeLayout>
 

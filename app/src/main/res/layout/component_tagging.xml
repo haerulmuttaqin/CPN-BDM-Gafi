@@ -1,107 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16sp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
     android:layout_marginTop="10dp"
+    android:layout_marginEnd="16sp"
     app:cardCornerRadius="5dp"
-    app:strokeWidth="0.5dp"
-    app:strokeColor="@color/gray_050">
+    app:strokeColor="@color/gray_050"
+    app:strokeWidth="0.5dp">
+
     <RelativeLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/reasonLabel"
-            android:text="Tagging"
-            android:fontFamily="@font/bold"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bold"
+            android:text="Tagging"
+            android:textColor="@color/black" />
 
         <LinearLayout
             android:id="@+id/box1"
-            android:layout_below="@id/reasonLabel"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/reasonLabel"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
-            
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="5dp"
-                app:cardElevation="0dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/blue_200"
                 app:cardCornerRadius="7dp"
-                app:cardBackgroundColor="@color/blue_200">
-                
+                app:cardElevation="0dp">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    
+
                     <TextView
                         android:id="@+id/blue1"
-                        android:text="37.000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:text="..."
                         android:textColor="@color/white"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/blue2"
-                        android:layout_below="@id/blue1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/blue1"
                         android:layout_marginTop="3dp"
-                        android:text="[76%]"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <TextView
                         android:id="@+id/blue3"
-                        android:layout_below="@id/blue2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/blue2"
                         android:layout_marginTop="3dp"
-                        android:text="+6%"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <ImageView
-                        android:layout_below="@id/blue2"
+                        android:id="@+id/blue4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/blue2"
                         android:layout_marginStart="3dp"
                         android:layout_marginBottom="3dp"
-                        android:src="@drawable/arrow_up"
-                        app:tint="@color/green_200"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    
+                        app:tint="@color/green_200" />
                 </RelativeLayout>
-                
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/yellow_200"
                 app:cardCornerRadius="7dp"
-                app:cardBackgroundColor="@color/yellow_200">
+                app:cardElevation="0dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -109,58 +111,59 @@
 
                     <TextView
                         android:id="@+id/yellow1"
-                        android:text="8.200"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:text="..."
                         android:textColor="@color/white"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/yellow2"
-                        android:layout_below="@id/yellow1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/yellow1"
                         android:layout_marginTop="3dp"
-                        android:text="[17%]"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <TextView
                         android:id="@+id/yellow3"
-                        android:layout_below="@id/yellow2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/yellow2"
                         android:layout_marginTop="3dp"
-                        android:text="-6%"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <ImageView
-                        android:layout_below="@id/yellow2"
+                        android:id="@+id/yellow4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/yellow2"
                         android:layout_marginStart="3dp"
                         android:layout_marginBottom="3dp"
-                        android:src="@drawable/arrow_down"
-                        app:tint="@color/green_200"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-
+                        app:tint="@color/green_200" />
                 </RelativeLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                app:cardElevation="0dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/red"
                 app:cardCornerRadius="7dp"
-                app:cardBackgroundColor="@color/red">
+                app:cardElevation="0dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -168,71 +171,71 @@
 
                     <TextView
                         android:id="@+id/red1"
-                        android:text="3.500"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:text="..."
                         android:textColor="@color/white"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/red2"
-                        android:layout_below="@id/red1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/red1"
                         android:layout_marginTop="3dp"
-                        android:text="[7%]"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <TextView
                         android:id="@+id/red3"
-                        android:layout_below="@id/red2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/red2"
                         android:layout_marginTop="3dp"
-                        android:text="-13%"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <ImageView
-                        android:layout_below="@id/red2"
+                        android:id="@+id/red4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/red2"
                         android:layout_marginStart="3dp"
                         android:layout_marginBottom="3dp"
-                        android:src="@drawable/arrow_down"
-                        app:tint="@color/green_200"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-
+                        app:tint="@color/green_200" />
                 </RelativeLayout>
-
             </com.google.android.material.card.MaterialCardView>
-            
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/box2"
-            android:layout_below="@id/box1"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/box1"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="5dp"
-                app:cardElevation="0dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/gray_200"
                 app:cardCornerRadius="7dp"
-                app:cardBackgroundColor="@color/gray_200">
+                app:cardElevation="0dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -240,57 +243,58 @@
 
                     <TextView
                         android:id="@+id/gray1"
-                        android:text="300"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:text="..."
                         android:textColor="@color/white"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/gray2"
-                        android:layout_below="@id/gray1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gray1"
                         android:layout_marginTop="3dp"
-                        android:text="[1%]"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <TextView
                         android:id="@+id/gray3"
-                        android:layout_below="@id/gray2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gray2"
                         android:layout_marginTop="3dp"
-                        android:text="-25%"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <ImageView
-                        android:layout_below="@id/gray2"
+                        android:id="@+id/gray4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/gray2"
                         android:layout_marginStart="3dp"
                         android:layout_marginBottom="3dp"
-                        android:src="@drawable/arrow_up"
-                        app:tint="@color/red"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-
+                        app:tint="@color/red" />
                 </RelativeLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/orange"
                 app:cardCornerRadius="7dp"
-                app:cardBackgroundColor="@color/yellow_200">
+                app:cardElevation="0dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -298,58 +302,59 @@
 
                     <TextView
                         android:id="@+id/orange1"
-                        android:text="21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:text="..."
                         android:textColor="@color/white"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/orange2"
-                        android:layout_below="@id/orange1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/orange1"
                         android:layout_marginTop="3dp"
-                        android:text="[0%]"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <TextView
                         android:id="@+id/orange3"
-                        android:layout_below="@id/orange2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/orange2"
                         android:layout_marginTop="3dp"
-                        android:text="-30%"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <ImageView
-                        android:layout_below="@id/orange2"
+                        android:id="@+id/orange4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/orange2"
                         android:layout_marginStart="3dp"
                         android:layout_marginBottom="3dp"
-                        android:src="@drawable/arrow_down"
-                        app:tint="@color/green_200"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-
+                        app:tint="@color/green_200" />
                 </RelativeLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                app:cardElevation="0dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/black_100"
                 app:cardCornerRadius="7dp"
-                app:cardBackgroundColor="@color/black_100">
+                app:cardElevation="0dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -357,51 +362,67 @@
 
                     <TextView
                         android:id="@+id/black1"
-                        android:text="300"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:text="..."
                         android:textColor="@color/white"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/black2"
-                        android:layout_below="@id/black1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/black1"
                         android:layout_marginTop="3dp"
-                        android:text="[1%]"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <TextView
                         android:id="@+id/black3"
-                        android:layout_below="@id/black2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/black2"
                         android:layout_marginTop="3dp"
-                        android:text="-77%"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="..."
+                        android:textColor="@color/white" />
+
                     <ImageView
-                        android:layout_below="@id/black2"
+                        android:id="@+id/black4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/black2"
                         android:layout_marginStart="3dp"
                         android:layout_marginBottom="3dp"
-                        android:src="@drawable/arrow_down"
-                        app:tint="@color/green_200"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-
+                        app:tint="@color/green_200" />
                 </RelativeLayout>
-
             </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/progress"
+        android:visibility="visible"
+        android:background="@drawable/bg_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loading_blue.json"
+            app:lottie_loop="true" />
+    </RelativeLayout>
+
 </com.google.android.material.card.MaterialCardView>

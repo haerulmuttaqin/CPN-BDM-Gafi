@@ -68,8 +68,12 @@ ext {
             "prDownloader"              : "com.mindorks.android:prdownloader:0.6.0",
             "glide"                     : "com.github.bumptech.glide:glide:4.9.0",
             "glideAnotation"            : "com.github.bumptech.glide:compiler:4.9.0",
-            "jsoup"                     : "org.jsoup:jsoup:1.11.1",
+            "jsoup"                     : "org.jsoup:jsoup:1.14.3",
             "retrofitHtmlConverter"     : "com.github.slashrootv200:retrofit-html-converter:0.0.2",
-            "shimmer"                   : "com.facebook.shimmer:shimmer:0.5.0"
+            "shimmer"                   : "com.facebook.shimmer:shimmer:0.5.0",
+            "mapbox"                    : "com.mapbox.maps:android:10.3.0",
+            "analytics"                 : "com.google.firebase:firebase-analytics:17.5.0",
+            "crashlytics"               : "com.google.firebase:firebase-crashlytics:18.2.1",
+
     ]
 }

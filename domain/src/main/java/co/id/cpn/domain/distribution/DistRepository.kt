@@ -8,5 +8,7 @@ interface DistRepository {
     suspend fun insertDist(distribution: Distribution)
     suspend fun insertRegion(region: Region)
     fun getDistributions() : LiveData<List<Distribution>>
+    fun getRegionsBySID(regionSID: String): LiveData<Region>
     fun getRegionsBy(distributionSID: String) : LiveData<List<Region>>
+    fun getRegionsListBy(distributionSID: String): List<Region>
 }

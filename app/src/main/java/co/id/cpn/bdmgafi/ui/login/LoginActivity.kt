@@ -63,6 +63,8 @@ class LoginActivity : BaseActivity() {
             resetServerKey()
         }
 
+        viewModel.generateModules()
+
     }
 
     private fun resetServerKey() {

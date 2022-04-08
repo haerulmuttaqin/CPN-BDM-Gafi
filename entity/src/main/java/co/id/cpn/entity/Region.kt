@@ -13,7 +13,7 @@ data class Region(
     @ColumnInfo(name = "is_selected") var isSelected: Boolean,
     @ColumnInfo(name = "sqlite_link") var sqLiteLink: String,
     @ColumnInfo(name = "download_status") var downloadStatus: String,
-    @ColumnInfo(name = "download_info") var downloadInfo: String,
+    @ColumnInfo(name = "download_info") var downloadInfo: String = "-/-",
     @ColumnInfo(name = "size") var size: Int,
     @ColumnInfo(name = "progress") var progress: Int
 )

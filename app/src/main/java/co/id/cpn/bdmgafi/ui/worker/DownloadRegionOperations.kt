@@ -10,7 +10,7 @@ import co.id.cpn.entity.util.Constants
 /**
  * Builds and holds WorkContinuation based on supplied filters.
  */
-internal class DownloadRegionOperations private constructor(val continuation: WorkContinuation) {
+class DownloadRegionOperations constructor(val continuation: WorkContinuation) {
 
     internal class Builder(
         private val context: Context,
@@ -25,19 +25,35 @@ internal class DownloadRegionOperations private constructor(val continuation: Wo
         fun build(): DownloadRegionOperations {
 
             Log.w("WORK continuation", "build")
-            
-            val continuation = WorkManager.getInstance(context)
+
+            var continuation = WorkManager.getInstance(context)
                 .beginUniqueWork(
                     Constants.DOWNLOAD_WORK,
                     ExistingWorkPolicy.APPEND_OR_REPLACE,
                     OneTimeWorkRequest.from(InitWorker::class.java)
                 )
-            
-            return DownloadRegionOperations(continuation)
-        }
 
-        private fun createInputData(downloadLink: String): Data {
-            return workDataOf(Constants.INPUT_WORK to downloadLink)
+            val tag = region.regionSID + "_download"
+            val download = OneTimeWorkRequestBuilder<DownloadWorker>()
+                .setInputData(workDataOf(
+                    Constants.REGION to region.regionSID,
+                    Constants.DISTRIBUTION to region.distributionSid)
+                )
+                .addTag(tag)
+                .build()
+            continuation = continuation.then(download)
+
+            val tagImport = region.regionSID + "_import"
+            val import = OneTimeWorkRequestBuilder<ImportWorker>()
+                .setInputData(workDataOf(
+                    Constants.REGION to region.regionSID,
+                    Constants.DISTRIBUTION to region.distributionSid)
+                )
+                .addTag(tagImport)
+                .build()
+            continuation = continuation.then(import)
+
+            return DownloadRegionOperations(continuation)
         }
     }
 }

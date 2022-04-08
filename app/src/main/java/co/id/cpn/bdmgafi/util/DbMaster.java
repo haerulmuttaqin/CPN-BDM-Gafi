@@ -61,6 +61,14 @@ public class DbMaster extends SQLiteOpenHelper {
         file = null;
     }
 
+    public void deleteZipFile(String name) {
+        File file = new File(Environment.getExternalStorageDirectory().toString() + Constants.PATH_TEMP + name);
+        if (file.exists()) {
+            file.delete();
+        }
+        file = null;
+    }
+
 
     public void deleteMasterDataZip() {
         File file = new File(Environment.getExternalStorageDirectory().toString() + Constants.PATH + Constants.MASTER_DB_ZIP);
@@ -109,6 +117,20 @@ public class DbMaster extends SQLiteOpenHelper {
                 e.printStackTrace();
                 return false;
             }
+        }
+    }
+
+
+    public boolean importDataBase(String name) {
+        this.getReadableDatabase();
+        try {
+            copyDataBase(name);
+            deleteMasterData();
+            deleteMasterDataZip();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -173,6 +195,20 @@ public class DbMaster extends SQLiteOpenHelper {
 
     private void copyDataBase() throws IOException {
         InputStream externalDbStream = new FileInputStream(PATH_MASTER_DATA); // Environment.getExternalStorageDirectory() + "/Sadix-CRM/"; MASTER_DB.db
+        String outFileName = DB_PATH + DB_NAME; // //data//data//%s//databases//", packageName MASTER_DB.db
+        OutputStream localDbStream = new FileOutputStream(outFileName);
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = externalDbStream.read(buffer)) > 0) {
+            localDbStream.write(buffer, 0, bytesRead);
+        }
+        localDbStream.flush();
+        localDbStream.close();
+        externalDbStream.close();
+    }
+
+    private void copyDataBase(String name) throws IOException {
+        InputStream externalDbStream = new FileInputStream(Environment.getExternalStorageDirectory().toString() + Constants.PATH_TEMP); // Environment.getExternalStorageDirectory() + "/Sadix-CRM/"; MASTER_DB.db
         String outFileName = DB_PATH + DB_NAME; // //data//data//%s//databases//", packageName MASTER_DB.db
         OutputStream localDbStream = new FileOutputStream(outFileName);
         byte[] buffer = new byte[1024];

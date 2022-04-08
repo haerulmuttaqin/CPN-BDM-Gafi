@@ -18,5 +18,7 @@ class DistRepositoryImpl constructor(
         withContext(Dispatchers.IO) { appDatabase.regionDao().insert(region) }
     }
     override fun getDistributions(): LiveData<List<Distribution>> = appDatabase.distributionDao().getAll()
-    override fun getRegionsBy(distributionSID: String): LiveData<List<Region>> = appDatabase.regionDao().getBy(distributionSID = distributionSID)
+    override fun getRegionsBySID(regionSID: String): LiveData<Region> = appDatabase.distributionDao().getRegionBySID(regionSID)
+    override fun getRegionsBy(distributionSID: String): LiveData<List<Region>> = appDatabase.regionDao().getBy(distributionSID)
+    override fun getRegionsListBy(distributionSID: String): List<Region> = appDatabase.regionDao().getListBy(distributionSID)
 }

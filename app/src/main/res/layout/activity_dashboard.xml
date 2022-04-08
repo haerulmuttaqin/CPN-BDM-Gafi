@@ -1,60 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_100">
-    
+    android:background="@color/white_100"
+    android:orientation="vertical">
+
     <RelativeLayout
-        android:background="#FFFFFF"
-        android:elevation="2dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        
-        <Spinner
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/filterButton"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:elevation="2dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_customer_distribution"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        
-        <ImageView
-            android:id="@+id/filterButton"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_filter"
-            android:padding="10dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-        
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/distribution"
+            android:minHeight="55dp">
+            <co.id.cpn.bdmgafi.widget.DistributionDropdown
+                android:id="@+id/distribution_dropdown"
+                style="@style/dropDownStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
     </RelativeLayout>
-    
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingBottom="10dp"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                
-                <include android:id="@+id/productivity" layout="@layout/component_productivity" />
-                <include android:id="@+id/so_vs_do" layout="@layout/component_so_vs_do" />
-                <include android:id="@+id/reason_orderlist" layout="@layout/component_reason_orderlost" />
-                <include android:id="@+id/tagging" layout="@layout/component_tagging" />
-                <include android:id="@+id/freezer" layout="@layout/component_total_freezer" />
-                <include android:id="@+id/register_outlet" layout="@layout/component_register_outlet" />
-                <include android:id="@+id/visit_performance" layout="@layout/component_visit_performance" />
-                
+                android:paddingBottom="10dp">
+
+                <include
+                    android:id="@+id/productivity"
+                    layout="@layout/component_productivity" />
+
+                <include
+                    android:id="@+id/so_vs_do"
+                    layout="@layout/component_so_vs_do" />
+
+                <include
+                    android:id="@+id/reason_orderlist"
+                    layout="@layout/component_reason_orderlost" />
+
+                <include
+                    android:id="@+id/tagging"
+                    layout="@layout/component_tagging" />
+
+                <include
+                    android:id="@+id/freezer"
+                    layout="@layout/component_total_freezer" />
+
+                <include
+                    android:id="@+id/register_outlet"
+                    layout="@layout/component_register_outlet" />
+
+                <include
+                    android:id="@+id/visit_performance"
+                    layout="@layout/component_visit_performance" />
+
+                <TextView
+                    android:id="@+id/lastUpatedAt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="Last Updated at : "
+                    android:textSize="11sp" />
             </LinearLayout>
-            
         </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 </LinearLayout>

@@ -10,7 +10,7 @@ import co.id.cpn.entity.News
 @Dao
 interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(news: News)
+    fun insert(news: News)
     @Query("select * from News")
     fun getNewsCache(): LiveData<List<News>>
 }

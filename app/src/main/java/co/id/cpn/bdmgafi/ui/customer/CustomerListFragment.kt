@@ -5,10 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import co.id.cpn.bdmgafi.databinding.FragmentCustomerListBinding
+import co.id.cpn.bdmgafi.ui.customer.adapter.CustomerAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class CustomerListFragment : Fragment() {
@@ -18,7 +18,7 @@ class CustomerListFragment : Fragment() {
 
     private val viewModel: CustomerViewModel by sharedViewModel()
     
-    private val adapter: CustomerAdapter by lazy { 
+    private val adapter: CustomerAdapter by lazy {
         CustomerAdapter(
             onItemClicked = {
                 Log.i("ListFragment", " ${it.customerName}")
@@ -43,8 +43,9 @@ class CustomerListFragment : Fragment() {
             items.let {
                 adapter.submitList(it)
             }
+            binding.progress.visibility = View.GONE
         })
-        binding.apply { 
+        binding.apply {
             recyclerView.adapter = adapter
         }
     }
@@ -53,5 +54,4 @@ class CustomerListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

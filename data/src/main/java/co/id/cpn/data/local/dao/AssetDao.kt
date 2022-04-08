@@ -9,11 +9,11 @@ import co.id.cpn.entity.Asset
 
 @Dao
 interface AssetDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(asset: Asset)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(asset: Asset)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(asset: List<Asset>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(asset: List<Asset>)
 
     @Query("select * from asset")
     fun getAll(): LiveData<List<Asset>>

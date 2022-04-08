@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
+
 class MainRepositoryImpl constructor(
     private val apiServices: ApiServices,
     private val appDatabase: AppDatabase,
@@ -98,6 +99,22 @@ class MainRepositoryImpl constructor(
             }
         }
     }.flowOn(Dispatchers.IO)
+
+    override suspend fun updateDownloadStatus(
+        regionSid: String,
+        downloadStatus: String,
+        downloadInfo: String,
+        progress: Int,
+        size: Int
+    ) {
+        appDatabase.regionDao().updateDownloadStatus(regionSid, downloadStatus, downloadInfo, progress, size)
+    }
+
+    override suspend fun insertUser(userData: UserData) = appDatabase.userDao().insert(userData)
+    override fun getUserData(): LiveData<UserData> = appDatabase.userDao().getUserData()
+
+    override suspend fun insertModules(list: List<Module>) = appDatabase.moduleDao().insert(list)
+    override fun getModule(roles: List<Int>): LiveData<List<Module>> = appDatabase.moduleDao().getBy(roles)
 
     override suspend fun getToken(auth: String): Flow<Resource<DataBody<JsonObject>>> = flow {
         val response = apiServices.getToken(auth = auth)

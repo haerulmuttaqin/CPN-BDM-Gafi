@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
@@ -24,8 +25,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     private static ClickListener clickListener;
 
-    public ViewPagerAdapter(List<News> meals,
-                            Context context) {
+    public ViewPagerAdapter(List<News> meals, Context context) {
         this.news = meals;
         this.context = context;
     }
@@ -53,22 +53,25 @@ public class ViewPagerAdapter extends PagerAdapter {
                 false
         );
 
+        MaterialCardView row = view.findViewById(R.id.row);
         ImageView thumb = view.findViewById(R.id.mealThumb);
         TextView title = view.findViewById(R.id.mealName);
+        TextView date = view.findViewById(R.id.dateText);
 
 //        String strThumb = news.get(position).POST_IMAGE_URL;
 
         if (position % 2 == 0) {
-            thumb.setImageDrawable(this.context.getDrawable(R.drawable.bg_tile_banner_yellow));
+            thumb.setImageDrawable(this.context.getDrawable(R.drawable.bg_tile_banner_white));
         } else {
             thumb.setImageDrawable(this.context.getDrawable(R.drawable.bg_tile_banner_gray));
         }
 
         String strTitle = news.get(position).getTitle();
         String strDate = news.get(position).getDate();
-        title.setText(strTitle + " — " + strDate);
+        title.setText(strTitle);
+        date.setText(strDate);
 
-        view.setOnClickListener(v -> clickListener.onClick(v, position));
+        row.setOnClickListener(v -> clickListener.onClick(v, position));
 
         container.addView(view, 0);
         return view;

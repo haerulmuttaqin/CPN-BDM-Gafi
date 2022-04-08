@@ -6,3 +6,4 @@ data class DataBody<T>(
     val data: T,
     val date: String
 )
+ 

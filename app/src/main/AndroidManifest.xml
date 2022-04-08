@@ -32,8 +32,6 @@
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.CPNBDMGafi">
-        <activity android:name=".ui.downloader.DownloadCustomerActivity"
-            android:theme="@style/Theme.CPNBDMGafi.NoActionBar"/>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/Theme.CPNBDMGafi.SplashScreen">
@@ -49,13 +47,21 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/Theme.CPNBDMGafi.NoActionBar" />
-        <activity
-            android:name=".ui.customer.DownloadCustomerDistribution"
-            android:label="Load Customer Data"
-            android:theme="@style/Theme.CPNBDMGafi.NoActionBar" />
+
+        <activity android:name=".ui.downloader.DownloadCustomerActivity"
+            android:theme="@style/Theme.CPNBDMGafi.NoActionBar"/>
+
+        <activity android:name=".ui.webview.WebViewActivity"
+            android:theme="@style/Theme.CPNBDMGafi.NoActionBar"/>
+
         <activity
             android:name=".ui.customer.CustomerActivity"
             android:theme="@style/Theme.CPNBDMGafi.NoActionBar" />
+
+        <activity
+            android:name=".ui.distribution.DistributionActivity"
+            android:theme="@style/Theme.CPNBDMGafi.NoActionBar" />
+
         <activity
             android:name=".ui.dashboard.DashboardActivity"
             android:label="@string/dashboard_performance_label"

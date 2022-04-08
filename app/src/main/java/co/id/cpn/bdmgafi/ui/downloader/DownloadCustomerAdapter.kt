@@ -1,6 +1,8 @@
 package co.id.cpn.bdmgafi.ui.downloader
 
+import android.app.ProgressDialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +10,16 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.Data
+import androidx.work.WorkInfo
+import co.id.cpn.bdmgafi.R
 import co.id.cpn.bdmgafi.databinding.ItemDownloadCustomerBinding
 import co.id.cpn.bdmgafi.ui.main.MainViewModel
 import co.id.cpn.bdmgafi.ui.worker.DownloadRegionOperations
 import co.id.cpn.entity.Region
+import co.id.cpn.entity.util.Utils
 import co.id.cpn.entity.util.Utils.createDir
+import com.google.gson.JsonParser
 import java.util.*
 
 class DownloadCustomerAdapter(
@@ -23,7 +30,7 @@ class DownloadCustomerAdapter(
 ) : ListAdapter<Region, DownloadCustomerAdapter.ListItemViewHolder>(
     diffCallback
 ) {
-    private var list = ArrayList<Region>()
+    var list = arrayListOf<Region>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
         val binding = ItemDownloadCustomerBinding.inflate(LayoutInflater.from(parent.context))
@@ -104,171 +111,197 @@ class DownloadCustomerAdapter(
             context: Context
         ) {
             createDir()
+
+            val tagDownload = item.regionSID + "_download"
+            val tagImport = item.regionSID + "_import"
+
+            viewModel.cancelWorkByTag(tagDownload)
+
+            binding.progressBarInit.visibility = View.VISIBLE
+            binding.download.visibility = View.INVISIBLE
+
             viewModel.applyDownloadCustomer(
                 DownloadRegionOperations.Builder(context, item).build()
             )
-            val tagDownload = item.regionSID + "_download"
-//            viewModel2.outputStatus(tagDownload)
-//                .observe(lifecycleOwner2!!, object : Observer<Any?>(tagDownload, viewModel2, item) {
-//                    /* synthetic */ var `f$1`: String? = null
-//                    /* synthetic */ var `f$2`: MainViewModel? = null
-//                    /* synthetic */ var `f$3`: Region? = null
-//                    override fun onChanged(obj: Any?) {
-//                        `m643processDownload$lambda5`(
-//                            this@ItemDownloadCustomerBinding,
-//                            `f$1`,
-//                            `f$2`,
-//                            `f$3`,
-//                            obj as List<*>?
-//                        )
-//                    }
-//
-//                    init {
-//                        `f$1` = r2
-//                        `f$2` = r3
-//                        `f$3` = r4
-//                    }
-//                })
-//            viewModel2.outputStatus(Intrinsics.stringPlus(item.regionSID, "_import")).observe(
-//                lifecycleOwner2,
-//                object : Observer<Any?>(
-//                    ProgressDialog(
-//                        binding2.download.context,
-//                        C0550R.C0557style.ProgressDialogStyle
-//                    ), viewModel2, item
-//                ) {
-//                    /* synthetic */ var `f$1`: ProgressDialog? = null
-//                    /* synthetic */ var `f$2`: MainViewModel? = null
-//                    /* synthetic */ var `f$3`: Region? = null
-//                    override fun onChanged(obj: Any?) {
-//                        `m644processDownload$lambda6`(
-//                            this@ItemDownloadCustomerBinding,
-//                            `f$1`,
-//                            `f$2`,
-//                            `f$3`,
-//                            obj as List<*>?
-//                        )
-//                    }
-//
-//                    init {
-//                        `f$1` = r2
-//                        `f$2` = r3
-//                        `f$3` = r4
-//                    }
-//                })
-        }
+            viewModel.outputStatus(tagDownload).observe(lifecycleOwner, { workInfo ->
+                var progressPercent = 0
+                var progress = 0
+                var progressMax = 0
+                if (workInfo.toString() != "[]") {
+                    when (workInfo[0].state) {
+                        WorkInfo.State.FAILED -> {
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "FAILED",
+                                "Failed, please try again",
+                                0,
+                                0
+                            )
+                        }
+                        WorkInfo.State.CANCELLED -> {
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "FAILED",
+                                "Failed, please try again",
+                                0,
+                                0
+                            )
+                        }
+                        WorkInfo.State.SUCCEEDED -> {
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "DOWNLOADING",
+                                "Completing...",
+                                100,
+                                100
+                            )
+                        }
+                        WorkInfo.State.RUNNING -> {
 
-//        companion object {
-//            /* access modifiers changed from: private */ /* renamed from: bind$lambda-3  reason: not valid java name */
-//            fun `m641bind$lambda3`(`this$0`: ListItemViewHolder, `$item`: Region?, it: View?) {
-//                Intrinsics.checkNotNullParameter(`this$0`, "this$0")
-//                Intrinsics.checkNotNullParameter(`$item`, "\$item")
-//                `this$0`.processDownload(
-//                    `this$0`.binding,
-//                    `$item`,
-//                    `this$0`.viewModel,
-//                    `this$0`.lifecycleOwner,
-//                    `this$0`.context
-//                )
-//            }
-//
-//            /* access modifiers changed from: private */ /* renamed from: bind$lambda-4  reason: not valid java name */
-//            fun `m642bind$lambda4`(`this$0`: ListItemViewHolder, `$item`: Region?, it: View?) {
-//                Intrinsics.checkNotNullParameter(`this$0`, "this$0")
-//                Intrinsics.checkNotNullParameter(`$item`, "\$item")
-//                confirmDialog(
-//                    `this$0`.context,
-//                    "Download Data",
-//                    "This region has been downloaded, are you sure want to download again?",
-//                    C0550R.C0552drawable.ic_undraw_download,
-//                    "Cancel",
-//                    "Yes",
-//                    `DownloadCustomerAdapter$ListItemViewHolder$bind$3$1`(`this$0`, `$item`)
-//                )
-//            }
-//            /* access modifiers changed from: private */ /* renamed from: processDownload$lambda-6  reason: not valid java name */
-//            fun `m644processDownload$lambda6`(
-//                `$binding`: ItemDownloadCustomerBinding,
-//                `$progressDialog`: ProgressDialog?,
-//                `$viewModel`: MainViewModel?,
-//                `$item`: Region?,
-//                listOfInfo: List<*>?
-//            ) {
-//                val progressDialog = `$progressDialog`
-//                Intrinsics.checkNotNullParameter(`$binding`, "\$binding")
-//                Intrinsics.checkNotNullParameter(`$progressDialog`, "\$progressDialog")
-//                val mainViewModel = `$viewModel`
-//                Intrinsics.checkNotNullParameter(`$viewModel`, "\$viewModel")
-//                Intrinsics.checkNotNullParameter(`$item`, "\$item")
-//                if (!Intrinsics.areEqual(listOfInfo.toString() as Any, "[]" as Any)) {
-//                    `$binding`.progressBarInit.visibility = 0
-//                    `$binding`.download.visibility = 4
-//                    val info = listOfInfo!![0] as WorkInfo
-//                    when (WhenMappings.`$EnumSwitchMapping$0`[info.state.ordinal]) {
-//                        3 -> {
-//                            `$progressDialog`!!.setMessage("Importing, please wait...")
-//                            `$progressDialog`.setCancelable(false)
-//                            if (!`$progressDialog`.isShowing) {
-//                                `$progressDialog`.show()
-//                            }
-//                            `$viewModel`.updateDownloadStatus(
-//                                `$item`!!.regionSID,
-//                                "DOWNLOADING",
-//                                "Completing, Please wait...",
-//                                100,
-//                                100
-//                            )
-//                            return
-//                        }
-//                        4 -> {
-//                            `$progressDialog`!!.dismiss()
-//                            `$viewModel`.updateDownloadStatus(
-//                                `$item`!!.regionSID,
-//                                "DOWNLOADED",
-//                                "downloaded",
-//                                0,
-//                                0
-//                            )
-//                            return
-//                        }
-//                        5 -> {
-//                            val failureOutputData = info.outputData
-//                            Intrinsics.checkNotNullExpressionValue(
-//                                failureOutputData,
-//                                "info.outputData"
-//                            )
-//                            Log.w("WORK_STATUS", Intrinsics.stringPlus("", failureOutputData))
-//                            `$progressDialog`!!.dismiss()
-//                            `$viewModel`.updateDownloadStatus(
-//                                `$item`!!.regionSID,
-//                                "FAILED",
-//                                "Failed, please try again",
-//                                0,
-//                                0
-//                            )
-//                            return
-//                        }
-//                        else -> return
-//                    }
-//                } else {
-//                    val list = listOfInfo
-//                }
-//            }
-//        }
-//
-//        /* JADX INFO: super call moved to the top of the method (can break code semantics) */
-//        init {
-//            Intrinsics.checkNotNullParameter(context2, "context")
-//            Intrinsics.checkNotNullParameter(lifecycleOwner2, "lifecycleOwner")
-//            Intrinsics.checkNotNullParameter(viewModel2, "viewModel")
-//            Intrinsics.checkNotNullParameter(binding2, "binding")
-//            Intrinsics.checkNotNullParameter(distribution2, "distribution")
-//            context = context2
-//            lifecycleOwner = lifecycleOwner2
-//            viewModel = viewModel2
-//            binding = binding2
-//            distribution = distribution2
-//        }
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "WAITING",
+                                "Initialing data...",
+                                0,
+                                0
+                            )
+
+                            val data: Data = workInfo[0].progress
+
+                            val jsonObject =
+                                JsonParser().parse(Utils.serializeToJson((data as Any))).asJsonObject["mValues"].asJsonObject
+
+                            if (jsonObject != null) {
+                                progressPercent =
+                                    if (jsonObject.get("${item.regionSID}_progress_percent") == null) 0 else jsonObject.get(
+                                        "${item.regionSID}_progress_percent"
+                                    ).asInt
+                                progress =
+                                    if (jsonObject.get("${item.regionSID}_progress") == null) 0 else jsonObject.get(
+                                        "${item.regionSID}_progress"
+                                    ).asInt
+                                progressMax =
+                                    if (jsonObject.get("${item.regionSID}_progress_max") == null) 0 else jsonObject.get(
+                                        "${item.regionSID}_progress_max"
+                                    ).asInt
+
+                                Log.w("processDownload", ": $jsonObject")
+
+                                if (progress > 0) {
+                                    val stringBuilder = StringBuilder()
+                                    stringBuilder.append(progress as Any?)
+                                    stringBuilder.append('/')
+                                    stringBuilder.append(progressMax)
+                                    stringBuilder.append("KB \u2022 ")
+                                    stringBuilder.append(progressPercent)
+                                    stringBuilder.append('%')
+                                    viewModel.updateDownloadStatus(
+                                        item.regionSID,
+                                        "DOWNLOADING",
+                                        stringBuilder.toString(),
+                                        progressMax,
+                                        progress
+                                    )
+                                }
+
+                                if (progress == 100) {
+                                    viewModel.updateDownloadStatus(
+                                        item.regionSID,
+                                        "DOWNLOADING",
+                                        "Completiong...",
+                                        100,
+                                        100
+                                    )
+                                }
+
+                            }
+                        }
+                        WorkInfo.State.ENQUEUED -> {
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "QUEUE",
+                                "Waiting in Queue...",
+                                0,
+                                0
+                            )
+                        }
+                        WorkInfo.State.BLOCKED -> {
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "QUEUE",
+                                "Waiting in Queue...",
+                                0,
+                                0
+                            )
+                        }
+                        else -> {
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "WAITING",
+                                "Initialing data...",
+                                0,
+                                0
+                            )
+                        }
+                    }
+                }
+            })
+
+            val progressDialog = ProgressDialog(context, R.style.ProgressDialogStyle)
+
+            viewModel.outputStatus(tagImport).observe(lifecycleOwner, { workInfo ->
+                if (workInfo.toString() != "[]") {
+                    when (workInfo[0].state) {
+                        WorkInfo.State.FAILED -> {
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "FAILED",
+                                "Failed, please try again",
+                                0,
+                                0
+                            )
+                        }
+                        WorkInfo.State.CANCELLED -> {
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "FAILED",
+                                "Failed, please try again",
+                                0,
+                                0
+                            )
+                        }
+                        WorkInfo.State.SUCCEEDED -> {
+                            progressDialog.dismiss()
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "DOWNLOADED",
+                                "downloaded",
+                                0,
+                                0
+                            )
+                        }
+                        WorkInfo.State.RUNNING -> {
+
+                            progressDialog.setTitle("Importing")
+                            progressDialog.setMessage("(${item.regionName}), please wait...")
+                            progressDialog.setCancelable(false)
+                            if (!progressDialog.isShowing) {
+                                progressDialog.show()
+                            }
+
+                            viewModel.updateDownloadStatus(
+                                item.regionSID,
+                                "DOWNLOADING",
+                                "Completing, Please wait...",
+                                100,
+                                100
+                            )
+
+                        }
+                    }
+                }
+            })
+        }
     }
 
     fun addData(listData: List<Region>) {
@@ -287,7 +320,7 @@ class DownloadCustomerAdapter(
                 oldItem: Region,
                 newItem: Region
             ): Boolean {
-                return oldItem == newItem
+                return oldItem.regionSID == newItem.regionSID
             }
 
             override fun areContentsTheSame(

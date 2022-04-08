@@ -8,5 +8,7 @@ class DistUseCaseImpl constructor(private val repository: DistRepository) : Dist
     override suspend fun insertDistribution(distribution: Distribution) = repository.insertDist(distribution)
     override suspend fun insertRegion(region: Region) = repository.insertRegion(region)
     override fun getDistributions(): LiveData<List<Distribution>> = repository.getDistributions()
-    override fun getRegionsBy(distributionSID: String): LiveData<List<Region>> = repository.getRegionsBy(distributionSID = distributionSID)
+    override fun getRegionsBySID(regionSID: String): LiveData<Region> = repository.getRegionsBySID(regionSID)
+    override fun getRegionsBy(distributionSID: String): LiveData<List<Region>> = repository.getRegionsBy(distributionSID)
+    override fun getRegionsListBy(distributionSID: String): List<Region> = repository.getRegionsListBy(distributionSID)
 }

@@ -5,17 +5,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import co.id.cpn.entity.Asset
 import co.id.cpn.entity.Customer
 import co.id.cpn.entity.CustomerItem
 
 @Dao
 interface CustomerDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(customer: Customer)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(customer: Customer)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(customer: List<Customer>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(customer: List<Customer>)
 
     @Query("select * from customer")
     fun getAll(): LiveData<List<Customer>>

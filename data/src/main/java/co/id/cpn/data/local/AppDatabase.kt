@@ -13,10 +13,15 @@ import co.id.cpn.entity.*
         Asset::class,
         Customer::class,
         CustomerType::class,
-        ProductOrder::class
+        ProductOrder::class,
+        InspectionCriteria::class,
+        Module::class,
+        UserData::class,
     ], version = 1, exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
+    abstract fun userDao(): UserDao
+    abstract fun moduleDao(): ModuleDao
     abstract fun distributionDao(): DistributionDao
     abstract fun regionDao(): RegionDao
     abstract fun newsDao(): NewsDao

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    
+
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/row"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginStart="10dp"
@@ -15,6 +17,7 @@
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="13dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -25,21 +28,36 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_tile_banner_gray"
                 android:scaleType="centerCrop" />
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/bg_shadow_bottom_to_top"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                android:layout_height="match_parent" />-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_secondary_dark">
+
+                <TextView
+                    android:id="@+id/dateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="12 Des 2021"
+                    android:textColor="@color/white"
+                    android:textSize="9sp" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/mealName"
-                android:textColor="@color/blue_500"
-                android:textSize="16sp"
-                android:layout_margin="15dp"
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/book"/>
+                android:layout_alignParentBottom="true"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/book"
+                android:textColor="@color/blue_500"
+                android:textSize="14sp" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

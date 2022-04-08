@@ -1,4 +1,6 @@
 package co.id.cpn.domain.di
+import co.id.cpn.domain.dashboard.DashUseCase
+import co.id.cpn.domain.dashboard.DashUseCaseImpl
 import co.id.cpn.domain.distribution.DistUseCase
 import co.id.cpn.domain.distribution.DistUseCaseImpl
 import co.id.cpn.domain.main.MainUseCase
@@ -11,4 +13,5 @@ val useCaseModule = module {
     single<MainUseCase> { MainUseCaseImpl(get()) }
     single<NewsUseCase> { NewsUseCaseImpl(get()) }
     single<DistUseCase> { DistUseCaseImpl(get()) }
+    single<DashUseCase> { DashUseCaseImpl(get()) }
 }
