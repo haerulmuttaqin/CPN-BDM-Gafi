@@ -17,7 +17,6 @@ class CustomerActivity : BaseActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityCustomerBinding
-
     private var navController: NavController? = null
     private val navHostFragment: NavHostFragment? = null
 

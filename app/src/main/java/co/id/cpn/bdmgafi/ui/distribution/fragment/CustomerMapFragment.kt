@@ -25,7 +25,6 @@ class CustomerMapFragment : Fragment(),
 
     private val CPN_STYLE =
         "https://map.sadix.com/api/v1/styles/basic/style.json?key=MrgWC8yuolU6fHImhalIts5pzH6xNxiO"
-
     private var _binding: FragmentCustomerMapBinding? = null
     private val binding get() = _binding!!
 

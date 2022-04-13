@@ -18,7 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class CustomerListFragment: Fragment() {
     private var _binding: FragmentCustomerDistributionListBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: CustomerViewModel by sharedViewModel()
 
     companion object {

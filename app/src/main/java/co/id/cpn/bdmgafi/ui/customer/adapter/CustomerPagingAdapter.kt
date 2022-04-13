@@ -13,7 +13,6 @@ import java.util.*
 class CustomerPagingAdapter (private val onItemClicked: (CustomerItem) -> Unit):
     PagingDataAdapter<CustomerItem, CustomerPagingAdapter.ListItemViewHolder>(diffCallback) {
     private val list: ArrayList<CustomerItem> = arrayListOf()
-
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<CustomerItem>() {
             override fun areItemsTheSame(

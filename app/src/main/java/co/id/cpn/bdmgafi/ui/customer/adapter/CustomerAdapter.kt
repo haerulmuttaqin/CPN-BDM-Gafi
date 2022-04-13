@@ -10,7 +10,6 @@ import co.id.cpn.entity.CustomerItem
 
 class CustomerAdapter(private val onItemClicked: (CustomerItem) -> Unit) :
     ListAdapter<CustomerItem, CustomerAdapter.ListItemViewHolder>(diffCallback) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
         return ListItemViewHolder(ItemCustomerBinding.inflate(LayoutInflater.from(parent.context)))
     }

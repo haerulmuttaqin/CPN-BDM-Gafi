@@ -12,7 +12,6 @@ import co.id.cpn.bdmgafi.ui.customer.adapter.CustomerAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class CustomerListFragment : Fragment() {
-
     private var _binding: FragmentCustomerListBinding? = null
     private val binding get() = _binding!!
 

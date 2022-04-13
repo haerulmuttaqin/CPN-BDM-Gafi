@@ -10,7 +10,6 @@ class CustomerViewModel
 constructor(
     private val mainUseCase: MainUseCase,
 ) : ViewModel() {
-
     val customers: LiveData<List<CustomerItem>> = mainUseCase.getCustomersItems()
     fun customerBy(customerSID: String): LiveData<CustomerItem> = mainUseCase.getCustomerBy(customerSID)
     fun customerAssetsBy(customerSID: String): LiveData<List<Asset>> = mainUseCase.getAssetsBy(customerSID)

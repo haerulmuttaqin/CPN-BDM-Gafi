@@ -19,7 +19,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://api-bdm-gafi.azurewebsites.net/api/\"")
+            buildConfigField("String", "BASE_URL", "\"http://crm.sadix.net/bdmapi/api/v1/\"")
             buildConfigField("String", "BASE_URL_NEWS", "\"https://www.joyday.com/id/\"")
         } 
         debug {

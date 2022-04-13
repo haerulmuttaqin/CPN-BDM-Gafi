@@ -18,7 +18,6 @@ class CustomerListInspectionFragment : Fragment() {
 
     private var _binding: FragmentCustomerInspectionListBinding? = null
     private val binding get() = _binding!!
-    
     private val safeArgs: CustomerDetailFragmentArgs by navArgs()
     lateinit var customer: CustomerItem
     

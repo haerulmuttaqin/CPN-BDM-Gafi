@@ -16,7 +16,6 @@ class DistributionViewModel constructor(
     fun submitSelectedDistribution(customerDistribution: String) {
         _distributionSelected.value = customerDistribution
     }
-
     val distributions: LiveData<List<Distribution>> = distUseCase.getDistributions()
     fun regions(distributionSID: String): LiveData<List<Region>> = distUseCase.getRegionsBy(distributionSID = distributionSID)
 }

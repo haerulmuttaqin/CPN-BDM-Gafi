@@ -25,7 +25,7 @@ val networkModule = module {
             .add(KotlinJsonAdapterFactory())
             .build()
 
-        val okhhtpclient = OkHttpClient.Builder()
+        val httpclient = OkHttpClient.Builder()
             .addInterceptor(AccessTokenAuthenticator(get()))
             .addInterceptor(loggingInterceptor)
             .connectTimeout(20L, TimeUnit.SECONDS)
@@ -37,7 +37,7 @@ val networkModule = module {
             .baseUrl(BuildConfig.BASE_URL)
 //            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okhhtpclient)
+            .client(httpclient)
             .build()
 
         retrofit.create(ApiServices::class.java)   

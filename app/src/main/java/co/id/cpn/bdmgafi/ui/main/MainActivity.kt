@@ -126,14 +126,12 @@ class MainActivity : BaseActivity() {
                 Log.w(TAG, "setupMain: $position")
                 val newsItem = news[position]
                 val title: String = newsItem.title
-                val url =
-                    Intrinsics.stringPlus("https://www.joyday.com/", newsItem.link)
+                val url = Intrinsics.stringPlus("https://www.joyday.com/", newsItem.link)
                 val intent = Intent(this, WebViewActivity::class.java)
                 intent.putExtra(Constants.TITLE, title)
                 intent.putExtra(Constants.URL, url)
                 startActivity(intent)
             }
-
         })
 
         binding.seeAll.setOnClickListener {

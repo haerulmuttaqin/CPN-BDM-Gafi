@@ -31,7 +31,6 @@ class DistributionActivity : BaseActivity() {
         binding = ActivityCustDistBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

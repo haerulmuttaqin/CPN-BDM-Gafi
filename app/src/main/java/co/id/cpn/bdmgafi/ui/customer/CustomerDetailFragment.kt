@@ -16,7 +16,6 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class CustomerDetailFragment : Fragment() {
-
     private var _binding: FragmentCustomerDetailBinding? = null
     private val binding get() = _binding!!
 

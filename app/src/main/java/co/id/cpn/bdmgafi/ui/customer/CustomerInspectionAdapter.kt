@@ -13,7 +13,6 @@ import co.id.cpn.entity.CustomerItem
 
 class CustomerInspectionAdapter(private val onItemClicked: (Asset) -> Unit) :
     ListAdapter<Asset, CustomerInspectionAdapter.ListItemViewHolder>(diffCallback) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
         return ListItemViewHolder(ItemCustomerInspectionBinding.inflate(LayoutInflater.from(parent.context)))
     }

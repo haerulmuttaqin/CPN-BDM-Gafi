@@ -23,7 +23,6 @@ import com.downloader.utils.Utils
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class CustomerVisitFragment : Fragment() {
-
     private var _binding: FragmentCustomerVisitBinding? = null
     private val binding get() = _binding!!
 
